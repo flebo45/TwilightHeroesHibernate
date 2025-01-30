@@ -1,5 +1,6 @@
 package org.TechnicalService;
 
+import org.Model.Armor;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -10,7 +11,7 @@ public class HibernateService {
     private HibernateService() {
         this.sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Monster.class)
+                .addAnnotatedClass(Armor.class)
                 .buildSessionFactory();
     }
 

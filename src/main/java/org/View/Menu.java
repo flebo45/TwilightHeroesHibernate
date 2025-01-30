@@ -1,6 +1,6 @@
-package View;
+package org.View;
 
-import Model.GameDifficulty;
+import org.Model.GameDifficulty;
 
 import java.util.Scanner;
 

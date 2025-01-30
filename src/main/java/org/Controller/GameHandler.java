@@ -1,7 +1,7 @@
-package Controller;
+package org.Controller;
 
-import Model.GameDifficulty;
-import Model.Player;
+import org.Model.GameDifficulty;
+import org.Model.Player;
 
 public class GameHandler {
 
@@ -16,7 +16,7 @@ public class GameHandler {
         };
         mazeGenerator.SetSize(mazeSize);
         // Genera il labirinto
-        mazeGenerator.loadRoomDescriptions("src/main/java/room.txt"); // Percorso del file con le descrizioni
+        mazeGenerator.loadRoomDescriptions("src/main/java/org/room.txt"); // Percorso del file con le descrizioni
         mazeGenerator.generateMaze();
 
         // Stampa il labirinto per verificare

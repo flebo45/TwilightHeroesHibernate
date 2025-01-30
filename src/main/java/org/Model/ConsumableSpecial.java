@@ -1,4 +1,4 @@
-package Model;
+package org.Model;
 public class ConsumableSpecial extends Consumables {
     private String effectType;
 

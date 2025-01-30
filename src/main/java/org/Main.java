@@ -1,18 +1,13 @@
 package org;
 
-import org.TechnicalService.HibernateService;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.Controller.Master;
+
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-
-        SessionFactory sf = HibernateService.getInstance().getSessionFactory();
-
-        Session session = sf.openSession();
-        session.beginTransaction();
-        session.persist("");
-        session.getTransaction().commit();
-
+    public static void main(String[] args) throws IOException {
+        Master master = new Master();
+        master.avvia();
+        master.Game();
     }
 }

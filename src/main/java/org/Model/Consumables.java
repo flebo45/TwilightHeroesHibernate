@@ -1,4 +1,4 @@
-package Model;
+package org.Model;
 
 public abstract class Consumables {
     protected String name;

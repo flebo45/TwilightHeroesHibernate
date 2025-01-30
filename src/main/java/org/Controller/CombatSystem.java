@@ -1,11 +1,11 @@
-package Controller;
+package org.Controller;
+
+import org.Model.Monster;
+import org.Model.Personage;
+import org.Model.Player;
 
 import java.util.Random;
 import java.util.Scanner;
-
-import Model.Monster;
-import Model.Personage;
-import Model.Player;
 
 public class CombatSystem {
 

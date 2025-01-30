@@ -1,4 +1,4 @@
-package Model;
+package org.Model;
 
 public class TreasureRoom {
     private Item treasure;

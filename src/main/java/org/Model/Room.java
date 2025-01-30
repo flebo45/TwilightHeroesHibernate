@@ -1,16 +1,37 @@
-package Model;
+package org.Model;
 
+import jakarta.persistence.*;
+
+import java.lang.reflect.Constructor;
+
+@Entity
+@Table(name="ROOMS")
 public class Room {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name="room_name", nullable=false)
     String name;
+
+    @Column(name="room_description", nullable=false)
     String description;
+    @Transient
     int positionX;
+    @Transient
     int positionY;
+    @Transient
     Consumables consumables;
+    @Transient
     Weapon weapon;
+    @Transient
     Armor armor;
+    @Transient
     Monster monster;
+    @Transient
     Trap trap;
 
+    public Room() {}
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
@@ -90,5 +111,12 @@ public class Room {
         throw new UnsupportedOperationException("Unimplemented method 'setshop'");
     }
 
-    
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

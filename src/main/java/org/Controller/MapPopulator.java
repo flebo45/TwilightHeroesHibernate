@@ -1,16 +1,11 @@
-package Controller;
+package org.Controller;
+
+import org.Model.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
-import Model.Armor;
-import Model.Consumables;
-import Model.Monster;
-import Model.Room;
-import Model.Trap;
-import Model.Weapon;
 
 public class MapPopulator {
 

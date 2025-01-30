@@ -1,4 +1,4 @@
-package Model;
+package org.Model;
 
 public enum GameDifficulty {
     EASY("hai selezionato la modalità Facile"),

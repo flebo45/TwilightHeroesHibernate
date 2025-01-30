@@ -1,20 +1,11 @@
-package Controller;
+package org.Controller;
+
+import org.Model.*;
+import org.View.Menu;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-
-import Model.Armor;
-import Model.Consumables;
-import Model.GameDifficulty;
-import Model.Item;
-import Model.Monster;
-import Model.Player;
-import Model.Room;
-import Model.Shop;
-import Model.Weapon;
-import Model.Trap;
-import View.Menu;
 
 public class Master {
         private final Menu menu;
@@ -64,11 +55,11 @@ public class Master {
  
         public void Game() throws IOException {
             maze = mazeGen.getMaze();
-            List<Consumables> consumables = ConsumableFactory.loadConsumables("src/main/java/consumable.txt");
-            List<Weapon> weapons = ItemFactory.loadWeapons("src/main/java/weapon.txt");
-            List<Armor> armors = ItemFactory.loadArmor("src/main/java/armor.txt");
-            List<Monster> monsters = MonsterFactory.loadMonster("src/main/java/monster.txt");
-            List<Trap> traps = TrapFactory.loadTraps("src/main/java/trap.txt");
+            List<Consumables> consumables = ConsumableFactory.loadConsumables("src/main/java/org/consumable.txt");
+            List<Weapon> weapons = ItemFactory.loadWeapons("src/main/java/org/weapon.txt");
+            List<Armor> armors = ItemFactory.loadArmor("src/main/java/org/armor.txt");
+            List<Monster> monsters = MonsterFactory.loadMonster("src/main/java/org/monster.txt");
+            List<Trap> traps = TrapFactory.loadTraps("src/main/java/org/trap.txt");
             System.out.print(maze[1][0].getName());
             MapPopulator.populateMapWithMOnster(maze, monsters);
             MapPopulator.populateMapWithTrap(maze, traps);

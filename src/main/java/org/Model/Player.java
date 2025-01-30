@@ -1,8 +1,8 @@
-package Model;
+package org.Model;
 
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Player extends Personage {
     private int mana;

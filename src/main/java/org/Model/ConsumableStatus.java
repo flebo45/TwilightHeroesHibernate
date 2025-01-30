@@ -1,4 +1,4 @@
-package Model;
+package org.Model;
 
 public class ConsumableStatus extends Consumables {
     @SuppressWarnings("FieldMayBeFinal")

@@ -1,15 +1,15 @@
-package Controller;
+package org.Controller;
+
+import org.Model.ConsumableSpecial;
+import org.Model.ConsumableStatus;
+import org.Model.ConsumableTime;
+import org.Model.Consumables;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import Model.ConsumableSpecial;
-import Model.ConsumableStatus;
-import Model.ConsumableTime;
-import Model.Consumables;
 
 
 
