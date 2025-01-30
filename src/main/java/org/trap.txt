@@ -1,0 +1,126 @@
+    Pozzo Camuffato
+        Un sottile strato di assi marce e foglie secche nasconde una voragine profonda. Appena ci si cammina sopra, il terreno cede di colpo.
+        Prova: Tiro di Agilità (Dado 16+) per scattare indietro un attimo prima di precipitare nel vuoto.
+        agl
+        16
+        50
+        Ti fermi all'ultimo istante, mentre il terreno sotto ai tuoi piedi si sgretola rivelando l'abisso sottostante. Con un balzo all'indietro, eviti la caduta mortale.
+        Il terreno cede di colpo sotto il tuo peso e precipiti nel buio. Un impatto doloroso ti lascia senza fiato mentre senti il sapore del sangue in bocca.
+
+    Dardi Avvelenati
+         Piccoli fori sulle pareti rivelano la presenza di meccanismi pronti a scagliare dardi imbevuti di veleno al minimo movimento.
+        Prova: Tiro di fortuna (Dado 16+) per notare le fessure prima di attraversare il corridoio e aggirarle.
+        luck
+        16
+        50
+         Noti le sottili fessure nei muri e, con estrema cautela, schivi il passaggio letale senza far scattare i meccanismi.
+        Un sibilo taglia l’aria, seguito da una fitta lancinante. Ti tocchi la spalla e senti il dardo conficcato nella carne, mentre il veleno inizia a farsi strada nelle tue vene.
+
+    Lame Oscillanti
+         Due enormi lame affilate emergono dalle pareti e si muovono in un movimento ritmico, pronte a tagliare in due chiunque non calcoli bene il tempismo.
+        Prova: Tiro di Agilità (Dado 18+) per eseguire un rapido scatto tra una lama e l’altra senza venire colpito.
+        agl
+        18
+        50
+         Aspetti il momento giusto e ti lanci tra le lame con una precisione perfetta. Il suono del metallo che sfiora l’aria è l’unica cosa che lasci alle tue spalle.
+        Sbagli i tempi e una lama ti colpisce con violenza, lasciando un profondo taglio sul tuo fianco. Il dolore ti annebbi la vista, ma devi andare avanti.
+
+    Masso Rotolante
+         Un pesante masso viene rilasciato da una rampa nascosta nel soffitto, precipitando con forza schiacciante lungo il corridoio.
+        Prova: Tiro di Forza (Dado 17+) per spingere via un compagno o saltare in una nicchia laterale prima di essere travolto.
+        str
+        17
+        50
+         Il fragore alle tue spalle si fa sempre più forte, ma con un ultimo scatto ti getti in una nicchia sicura. Il masso passa oltre, mancando per un soffio la tua testa.
+        Tentando di correre, inciampi rovinosamente. Il masso ti colpisce di striscio, scaraventandoti a terra con una forza brutale.
+
+
+    Pavimento a Pressione
+         Alcune mattonelle del pavimento affondano sotto il peso di chi ci cammina sopra, attivando un meccanismo letale come frecce o punte che escono dal soffitto.
+        Prova: Tiro di fortuna (Dado 11+) per accorgersi della leggera differenza tra le mattonelle normali e quelle trappola.
+        luck
+        11
+        50
+  Il tuo sguardo attento individua la mattonella sospetta, e con attenzione scegli il percorso sicuro, evitando la trappola.
+        Un leggero clic sotto il piede è l’unico avvertimento prima che una raffica di frecce ti colpisca di lato.
+
+    Ragnatela Appiccicosa
+         Fili quasi invisibili attraversano il passaggio, e una volta toccati fanno scattare una rete di ragnatela magica che immobilizza chiunque vi resti impigliato.
+        Prova: Tiro di Agilità (Dado 17+) per passare agilmente senza far scattare la trappola.
+        agl
+        17
+        50
+         Con movimenti leggeri e precisi, passi attraverso i fili sottili senza nemmeno sfiorarli. La trappola rimane silenziosa.
+        Uno strattone accidentale e in un istante la ragnatela ti avvolge. I tuoi arti sono bloccati e la sostanza appiccicosa ti impedisce di liberarti.
+
+    Colonna di Fuoco
+         Un piedistallo di pietra rilascia improvvisamente una fiammata ardente quando un certo peso viene applicato sul pavimento.
+        Prova: Tiro di Resistenza Magica (Dado 16+) per resistere al calore e superare l’area senza riportare ustioni gravi.
+        magic_d
+        16
+        50
+         Noti il piedistallo e ti sposti prima che la fiammata divampi. L’aria diventa rovente, ma ne esci illeso.
+        Il fuoco esplode davanti a te, bruciandoti il braccio. L’odore di carne bruciata ti fa stringere i denti dal dolore.
+
+    Gas Velenoso
+         Una statua dall’aspetto inquietante emana una nebbia verdastra quando si varca la soglia, riempiendo l’aria con un veleno soffocante.
+        Prova: Tiro di Forza (Dado 18+) per trattenere il respiro e attraversare rapidamente l’area senza respirare il gas.
+        str
+        18
+        50
+         Trattieni il respiro e corri attraverso la nebbia verdastra. L’aria tossica sfiora la tua pelle, ma riesci a non inalarne nemmeno un soffio.
+        Ti manca il fiato e un colpo di tosse ti tradisce. Il veleno entra nei polmoni, facendoti girare la testa mentre le forze iniziano ad abbandonarti.
+
+    Catene Animate
+         Oscure catene si animano dal nulla e tentano di avvolgere i malcapitati, stringendosi con forza per immobilizzarli.
+        Prova: Tiro di Forza (Dado 14+) per spezzare le catene prima che si serrino del tutto.
+        str
+        14
+        50
+         Con un colpo di forza bruta spezzi le catene prima che possano stringersi del tutto attorno a te. I resti metallici tintinnano ai tuoi piedi.
+        Le catene si serrano con una forza innaturale, bloccandoti in una morsa d’acciaio. Più ti dimeni, più stringono.
+
+    Trappola a Spuntoni
+         Il pavimento si apre improvvisamente, rivelando una fossa piena di spuntoni affilati, pronta a impalare chiunque cada dentro.
+        Prova: Tiro di Agilità (Dado 15+) per eseguire un salto acrobatico all’indietro e atterrare in sicurezza.
+        agl
+        15
+        50
+         Ti accorgi appena in tempo del pavimento che cede e con un’agile capriola atterri al sicuro, lontano dal baratro.
+        Il suolo sparisce sotto i tuoi piedi e precipiti. Riapri gli occhi dolorante tra le punte affilate, miracolosamente ancora in vita.
+
+    Gabbia Cadente
+         Una grata di ferro si sgancia dal soffitto e cade rapidamente, imprigionando chiunque si trovi sotto di essa.
+        Prova: Tiro di Agilità (Dado 13+) per scattare fuori dall’area prima che la trappola si chiuda.
+        agl
+        13
+        50
+         Scatti in avanti, sentendo il rumore della grata che si schianta dietro di te. Un secondo più lento e saresti stato intrappolato.
+        Il metallo piomba su di te con un tonfo sordo. Ti ritrovi in una gabbia, senza via di fuga.
+
+    Corrente Letale
+         Un sottile strato d’acqua copre il pavimento, e quando viene calpestato attiva una scarica elettrica mortale.
+        Prova: Tiro di Resistenza Magica (Dado 10+) per resistere al colpo senza svenire.
+        magic_d
+        10
+        50
+         Riconosci il pericolo e con un balzo superi la zona bagnata prima che la scarica elettrica possa colpirti.
+        Il fulmine ti attraversa il corpo e cadi a terra tremante. Il mondo diventa un turbinio di dolore e fumo.
+
+    Statua Lanciafulmini
+         Una statua con occhi di gemma si illumina improvvisamente, rilasciando una scarica di fulmini contro chiunque si trovi di fronte.
+        Prova: Tiro di Agilità (Dado 14+) per tuffarsi di lato ed evitare il colpo.
+        Agl
+        14
+        50
+         Quando gli occhi della statua si illuminano, ti tuffi lateralmente appena in tempo per evitare il fulmine mortale.
+        Il lampo ti colpisce in pieno petto. Un dolore lancinante ti attraversa, lasciandoti stordito e con il corpo fumante.
+
+    Liane Viventi
+         Radici e liane si muovono come serpenti e tentano di avvolgere chiunque si avventuri nella stanza.
+        Prova: Tiro di Forza (Dado 12+) per liberarsi rapidamente prima di essere intrappolato.
+        str
+        12
+        50
+         Con una mossa rapida, eviti le liane che tentano di avvolgerti, sgattaiolando via prima che possano stringersi.
+        Le liane ti afferrano e ti trascinano a terra. Ti contorci, ma il loro abbraccio vegetale è implacabile.
