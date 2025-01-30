@@ -1,17 +1,42 @@
 package org.Model;
 
+import jakarta.persistence.*;
+
 import java.util.Random;
 
+@Entity
+@Table(name= "TRAPS")
 public class Trap {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "trap_name", nullable = false)
     private String name;
+
+    @Column(name = "trap_description", nullable = false)
     private String description;
+
+    @Column(name = "trap_skillCheck", nullable = false)
     private String description2;
+
+    @Column(nullable = false)
     private int damage;
+
+    @Column(nullable = false)
     private int value;
+
+    @Column(nullable = false)
     private String stat;
+
+    @Column(nullable = false)
     private String success;
+
+    @Column(nullable = false)
     private String failure;
-                    
+
+    public Trap() {}
+
     public Trap(String name, String description, int dmg,String stat, int roll,String desc, String success, String failure){
         this.name = name;
         this.description = description;
@@ -120,4 +145,11 @@ public class Trap {
         }
     }
 
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public Long getId() {
+        return id;
+    }
+}
