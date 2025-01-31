@@ -1,9 +1,6 @@
 package org;
 
-import org.Controller.ItemFactory;
-import org.Controller.MazeGenerator;
-import org.Controller.MonsterFactory;
-import org.Controller.TrapFactory;
+import org.Controller.*;
 import org.Model.*;
 import org.TechnicalService.HibernateService;
 import org.hibernate.Session;
@@ -28,7 +25,6 @@ public class DbPopulator {
         }
          **/
 
-        //session.beginTransaction();
         /**
         List<Trap> traps = TrapFactory.loadTraps("src/main/java/org/trap.txt");
         for(Trap trap : traps) {
@@ -50,10 +46,20 @@ public class DbPopulator {
         }
          **/
 
+        /**
         List<Armor> armors = ItemFactory.loadArmor("src/main/java/org/armor.txt");
         for (Armor armor : armors) {
             session.persist(armor);
         }
+         **/
+
+        /**
+        List<Consumables> consumables = ConsumableFactory.loadConsumables("src/main/java/org/consumable.txt");
+        for (Consumables c : consumables) {
+            session.persist(c);
+        }
+         **/
+
         session.getTransaction().commit();
     }
 }

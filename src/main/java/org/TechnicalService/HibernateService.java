@@ -20,6 +20,10 @@ public class HibernateService {
                 .addAnnotatedClass(Player.class)
                 .addAnnotatedClass(Item.class)
                 .addAnnotatedClass(Weapon.class)
+                .addAnnotatedClass(Consumables.class)
+                .addAnnotatedClass(ConsumableTime.class)
+                .addAnnotatedClass(ConsumableStatus.class)
+                .addAnnotatedClass(ConsumableSpecial.class)
                 .buildSessionFactory();
     }
 

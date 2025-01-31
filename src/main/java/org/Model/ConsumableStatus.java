@@ -1,9 +1,17 @@
 package org.Model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("status")
 public class ConsumableStatus extends Consumables {
     @SuppressWarnings("FieldMayBeFinal")
     private int healthRestored; 
     private int manaRestored;
+
+    public ConsumableStatus() {}
 
     public ConsumableStatus(String name, String description, int healthRestored, int manaRestored) {
         super(name, description);

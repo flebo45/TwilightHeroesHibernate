@@ -33,5 +33,9 @@
         <mapping class="org.Model.Player"/>
         <mapping class="org.Model.Item"/>
         <mapping class="org.Model.Weapon"/>
+        <mapping class="org.Model.Consumables"/>
+        <mapping class="org.Model.ConsumableSpecial"/>
+        <mapping class="org.Model.ConsumableStatus"/>
+        <mapping class="org.Model.ConsumableTime"/>
     </session-factory>
 </hibernate-configuration>
