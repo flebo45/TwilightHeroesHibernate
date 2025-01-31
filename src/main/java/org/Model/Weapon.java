@@ -1,13 +1,31 @@
 package org.Model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "WEAPONS")
 public class Weapon extends Item{
+    @Column(nullable = false)
     private String AttackP;
+
+    @Column(nullable = false)
     private String AttackS;
+
+    @Column(nullable = false)
     private int dmgP;
+
+    @Column(nullable = false)
     private int dmgS;
+
+    @Column(nullable = false)
     private int accuracyP;
+
+    @Column(nullable = false)
     private int accuracyS;
+
+    public Weapon(){}
 
     public int getPrimaryAccuracy() {
         return accuracyP;

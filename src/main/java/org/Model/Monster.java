@@ -1,16 +1,36 @@
 package org.Model;
 
-import java.util.Random;
+import jakarta.persistence.*;
 
+import java.util.Random;
+@Entity
+@DiscriminatorValue("MONSTER")
 public class Monster extends Personage {
+    @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
     private int accuracy1;
+
+    @Column(nullable = false)
     private int accuracy2;
+
+    @Column(nullable = false)
     private int dmg1;
+
+    @Column(nullable = false)
     private int dmg2;
+
+    @Column(nullable = false)
     private String attack1;
+
+    @Column(nullable = false)
     private String attack2;
+
+    @Transient
     private Random random = new Random();
+
+    public Monster() {}
     
         
         public String getDescription() {
@@ -62,7 +82,7 @@ public class Monster extends Personage {
         }
 
         public int getdmg2() {
-            return dmg1;
+            return dmg2;
         }
     
         public void setdmg2(int dmg) {

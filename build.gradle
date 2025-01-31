@@ -14,24 +14,38 @@ ext {
     junitVersion = '5.11.0'
 }
 
-sourceCompatibility = '21'
-targetCompatibility = '21'
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+    options.compilerArgs.add('-parameters') // Migliora compatibilità con reflection/CDI
 }
 
 dependencies {
-    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0')
-    compileOnly('jakarta.ws.rs:jakarta.ws.rs-api:4.0.0')
-    compileOnly('jakarta.servlet:jakarta.servlet-api:6.1.0')
-    implementation("org.mariadb.jdbc:mariadb-java-client:3.3.2")
-    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.24.2")
-    implementation('org.hibernate:hibernate-core:6.4.4.Final')
-    implementation('org.glassfish.jaxb:jaxb-runtime:4.0.5')
+    // Jakarta API (se il runtime non le fornisce, usa implementation)
+    compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0'
+    compileOnly 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    // JDBC Driver
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.2'
+
+    // Logging con SLF4J
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.24.2'
+
+    // ORM Hibernate con JPA
+    implementation 'org.hibernate:hibernate-core:6.4.4.Final'
+
+    // JAXB per serializzazione XML
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
+
+    // Testing con JUnit 5
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
 test {

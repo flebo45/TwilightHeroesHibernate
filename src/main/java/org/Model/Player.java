@@ -1,17 +1,33 @@
 package org.Model;
 
+import jakarta.persistence.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+@Entity
+@DiscriminatorValue("PLAYER")
 public class Player extends Personage {
+    @Column(nullable = false)
     private int mana;
+
+    @Column(nullable = false)
     private int luck;
+
+    @Transient
     private int Money;
+
+    @Transient
     private Weapon weapon;
+
+    @Transient
     private Inventory inventory;
+
+    @Transient
     private int currentMN; 
 
+    @Transient
     private Map<String, Armor> equippedArmor;
 
     

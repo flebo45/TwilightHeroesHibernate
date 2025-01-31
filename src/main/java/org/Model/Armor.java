@@ -5,12 +5,9 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "ARMORS")
 public class Armor extends Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(nullable = false)
-    private String set;  // Nome del set dell'armatura
+    private String armorSet;  // Nome del set dell'armatura
 
     @Column(nullable = false)
     private int stat;  // Valore della statistica aumentata
@@ -28,7 +25,7 @@ public class Armor extends Item {
     public Armor(String name, String description, String set, String part, int stat, String statEnch) {
         this.name = name;
         this.description = description;
-        this.set = set;
+        this.armorSet = set;
         this.part = part;
         this.stat = stat;
         this.statEnch = statEnch;
@@ -38,8 +35,8 @@ public class Armor extends Item {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getSet() { return set; }
-    public void setSet(String set) { this.set = set; }
+    public String getSet() { return armorSet; }
+    public void setSet(String set) { this.armorSet = set; }
 
     public int getStat() { return stat; }
     public void setStat(int stat) { this.stat = stat; }

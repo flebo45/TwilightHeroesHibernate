@@ -12,10 +12,14 @@ public class MazeGenerator {
     private Room[][] maze;
     private int size;
     private Random random;
-    private List<Room> roomDescriptions;
+    private List<Room> roomDescriptions= new ArrayList<>();
 
 
     public MazeGenerator() {}
+
+    public List<Room> getRooms() {
+        return roomDescriptions;
+    }
 
     public void SetSize(int size) {
         this.size = size;

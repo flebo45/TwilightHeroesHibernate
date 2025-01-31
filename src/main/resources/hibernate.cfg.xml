@@ -25,6 +25,13 @@
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.highlight_sql">true</property>
 
+        <mapping class="org.Model.Armor"/>
+        <mapping class="org.Model.Trap"/>
+        <mapping class="org.Model.Room"/>
+        <mapping class="org.Model.Personage"/>
         <mapping class="org.Model.Monster"/>
+        <mapping class="org.Model.Player"/>
+        <mapping class="org.Model.Item"/>
+        <mapping class="org.Model.Weapon"/>
     </session-factory>
 </hibernate-configuration>
