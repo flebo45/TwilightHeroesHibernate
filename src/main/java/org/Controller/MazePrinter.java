@@ -12,10 +12,10 @@ public class MazePrinter {
                 System.out.print("P"); // Indica la posizione del giocatore
             }
             else if(maze[i][j] instanceof Shop){
-                System.out.print("@");
+                System.out.print("S");
             }
              else if (maze[i][j] == null) {
-                System.out.print("#"); // Muro
+                System.out.print("█"); // Muro
             } else {
                 System.out.print(" "); // Spazio percorribile
             }
