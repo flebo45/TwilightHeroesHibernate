@@ -1,6 +1,7 @@
 package org.Controller;
 
 import org.Model.*;
+import org.TechnicalService.PersistentManager;
 import org.View.Menu;
 
 import java.io.IOException;
@@ -54,11 +55,11 @@ public class Master {
  
         public void Game() throws IOException {
             maze = mazeGen.getMaze();
-            List<Consumables> consumables = ConsumableFactory.loadConsumables("src/main/java/org/consumable.txt");
-            List<Weapon> weapons = ItemFactory.loadWeapons("src/main/java/org/weapon.txt");
-            List<Armor> armors = ItemFactory.loadArmor("src/main/java/org/armor.txt");
-            List<Monster> monsters = MonsterFactory.loadMonster("src/main/java/org/monster.txt");
-            List<Trap> traps = TrapFactory.loadTraps("src/main/java/org/trap.txt");
+            List<Consumables> consumables = PersistentManager.getInstance().loadConsumables();
+            List<Weapon> weapons = PersistentManager.getInstance().loadWeapons();
+            List<Armor> armors = PersistentManager.getInstance().loadArmors();
+            List<Monster> monsters = PersistentManager.getInstance().loadMonsters();
+            List<Trap> traps = PersistentManager.getInstance().laodTraps();
             ShopPlacer shopPlacer = new ShopPlacer(consumables, armors, weapons);
             System.out.print(maze[1][0].getName());
             MapPopulator.populateMapWithMOnster(maze, monsters);
