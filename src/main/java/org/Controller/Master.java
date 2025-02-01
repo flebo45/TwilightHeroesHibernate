@@ -14,8 +14,7 @@ public class Master {
         private final Player player;
         private final MazeGenerator mazeGen;
         private Room[][] maze;
-        private Shop shop;
-    
+        
         public Master() {
             this.menu = new Menu();
             this.gameHandler = new GameHandler();
@@ -60,15 +59,17 @@ public class Master {
             List<Armor> armors = ItemFactory.loadArmor("src/main/java/org/armor.txt");
             List<Monster> monsters = MonsterFactory.loadMonster("src/main/java/org/monster.txt");
             List<Trap> traps = TrapFactory.loadTraps("src/main/java/org/trap.txt");
+            ShopPlacer shopPlacer = new ShopPlacer(consumables, armors, weapons);
             System.out.print(maze[1][0].getName());
             MapPopulator.populateMapWithMOnster(maze, monsters);
             MapPopulator.populateMapWithTrap(maze, traps);
             MapPopulator.populateMap(maze, consumables);
             MapPopulator.populateMapWithArmor(maze, armors);
             MapPopulator.populateMapWithWeapons(maze, weapons);
-            mazeGen.placeShop(consumables, armors, weapons);
+            shopPlacer.placeShop(maze);
+            //mazeGen.placeShop(consumables, armors, weapons);
             player.setPosition(maze[1][0]);
-            printMaze();
+            MazePrinter.printMaze(maze, player);
             System.out.println(player.getPosition().getName());
             System.out.println(player.getPosition().getPositionX());
             System.out.println(player.getPosition().getPositionY());
@@ -163,7 +164,7 @@ public class Master {
         } else {
             System.out.println("Non puoi muoverti in quella direzione! Prova un'altra direzione.");
         }
-        printMaze();
+        MazePrinter.printMaze(maze, player);
     }
 
     private void examineRoom(Room currentRoom) {
@@ -267,25 +268,6 @@ public class Master {
     private void checkStatusPg() {
        player.getStatus(player);
     }
-        private void printMaze(){
-            for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[i].length; j++) {
-                if (player.getPosition().getPositionX() == i && player.getPosition().getPositionY() == j) {
-                    System.out.print("P"); // Indica la posizione del giocatore
-                }
-                else if(maze[i][j] instanceof Shop){
-                    System.out.print("@");
-                }
-                 else if (maze[i][j] == null) {
-                    System.out.print("#"); // Muro
-                } else {
-                    System.out.print(" "); // Spazio percorribile
-                }
-            }
-            System.out.println(); // A capo alla fine di ogni riga
-        }
-    }
-
 
     private void useConsumable(List<Consumables> inventoryCons, Scanner scanner){
 

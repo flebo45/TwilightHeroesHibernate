@@ -1,8 +1,8 @@
 package org.View;
 
-import org.Model.GameDifficulty;
-
 import java.util.Scanner;
+
+import org.Controller.GameDifficulty;
 
 public class Menu {
     private final Scanner scanner;

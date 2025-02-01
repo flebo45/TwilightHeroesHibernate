@@ -1,7 +1,7 @@
 package org.Controller;
 
-import org.Model.GameDifficulty;
 import org.Model.Player;
+import org.Model.Room;
 
 public class GameHandler {
 
@@ -14,10 +14,12 @@ public class GameHandler {
             case NORMAL -> 20;
             case HARD -> 30;
         };
-        mazeGenerator.SetSize(mazeSize);
+        mazeGenerator.setSize(mazeSize);
         // Genera il labirinto
-        mazeGenerator.loadRoomDescriptions("src/main/java/org/room.txt"); // Percorso del file con le descrizioni
         mazeGenerator.generateMaze();
+        RoomLoader roomLoader = new RoomLoader();
+        roomLoader.loadRoomDescriptions("src\\main\\java\\org\\room.txt");
+        mazeGenerator.assignRooms(roomLoader);
 
         // Stampa il labirinto per verificare
         //mazeGenerator.printMaze();
