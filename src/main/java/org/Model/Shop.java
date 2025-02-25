@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import org.Controller.Master;
 
 public class Shop extends Room {
     private List<Armor> shopArmor;
@@ -21,7 +22,7 @@ public class Shop extends Room {
     }
 
 
-    public void enterShop(Player player, Scanner scanner) {
+    public void enterShop(Player player, Scanner scanner, Master master) {
         System.out.println("Sei entrato nel negozio! Ecco cosa puoi acquistare:");
         int index = 1;
         System.out.println("Armi:");
@@ -46,6 +47,9 @@ public class Shop extends Room {
         System.out.println("1. Armi");
         System.out.println("2. Armature");
         System.out.println("3. Consumabili");
+        System.out.println("");
+        System.out.println("4. esci");
+
         int choice = Integer.parseInt(scanner.nextLine()); // Metodo per leggere l'input del giocatore
 
         if (choice == 1 ){
@@ -105,6 +109,9 @@ public class Shop extends Room {
             } else {
                 System.out.println("Scelta non valida.");
             }
+    }
+    else if(choice == 4){
+        master.movePlayer(scanner);
     }
 }
 

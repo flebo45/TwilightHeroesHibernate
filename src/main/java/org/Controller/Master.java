@@ -15,6 +15,7 @@ public class Master {
         private final Player player;
         private final MazeGenerator mazeGen;
         private Room[][] maze;
+        private PlayerController pgController;
         
         public Master() {
             this.menu = new Menu();
@@ -22,6 +23,7 @@ public class Master {
             this.giocoAttivo = true;
             this.player = new Player();
             this.mazeGen = new MazeGenerator();
+            this.pgController = new PlayerController();
         }
     
         public void avvia() {
@@ -32,7 +34,7 @@ public class Master {
                     case 1 -> {
                         GameDifficulty difficolta = menu.scegliDifficolta();
                         giocoAttivo = false;
-                        gameHandler.nuovaPartita(difficolta , mazeGen , player);
+                        gameHandler.nuovaPartita(difficolta , mazeGen , player, pgController);
                        
                     }
                     case 2 -> gameHandler.caricaPartita();
@@ -53,7 +55,7 @@ public class Master {
         }
 
  
-        public void Game() throws IOException {
+        public void Game(Master master) throws IOException {
             maze = mazeGen.getMaze();
             List<Consumables> consumables = PersistentManager.getInstance().loadConsumables();
             List<Weapon> weapons = PersistentManager.getInstance().loadWeapons();
@@ -68,7 +70,6 @@ public class Master {
             MapPopulator.populateMapWithArmor(maze, armors);
             MapPopulator.populateMapWithWeapons(maze, weapons);
             shopPlacer.placeShop(maze);
-            //mazeGen.placeShop(consumables, armors, weapons);
             player.setPosition(maze[1][0]);
             MazePrinter.printMaze(maze, player);
             System.out.println(player.getPosition().getName());
@@ -91,14 +92,14 @@ public class Master {
                         if(result == true){player.getPosition().setTrap(null);}
                         else{
                             if(player.getCurrentHP()<= 0){gameOver();}
-                            System.out.println("La trappola è rimasta attiva, \nper esaminare la stanza devi prima superare la prova, altrimenti si riattiverà");
+                            System.out.println("La trappola è rimasta attiva, \nper effettuare qualsiasi azione devi prima superare la prova, altrimenti si riattiverà");
                         }
                         
                     }
                     if (player.getPosition() instanceof Shop){
                         int playerX = player.getPosition().getPositionX();
                         int playerY = player.getPosition().getPositionY();
-                        ((Shop) maze[playerX][playerY]).enterShop(player, scanner);
+                        ((Shop) maze[playerX][playerY]).enterShop(player, scanner, master);
                     } 
                     
                     System.out.println("\nCosa vuoi fare?");
@@ -135,8 +136,7 @@ public class Master {
             }
     
 
-   
-    private void movePlayer(Scanner scanner) {
+    public void movePlayer(Scanner scanner) {
         System.out.println("Usa W (su), A (sinistra), S (giù), D (destra) per muoverti.");
       
     
@@ -267,7 +267,7 @@ public class Master {
         }
 
     private void checkStatusPg() {
-       player.getStatus(player);
+       pgController.getStatus(player);
     }
 
     private void useConsumable(List<Consumables> inventoryCons, Scanner scanner){
@@ -308,7 +308,7 @@ public class Master {
                     System.out.println("Hai scelto: " + selectedItem.toString());
                     if (selectedItem instanceof Armor){
                         Armor selectedArmor = (Armor) selectedItem;
-                        player.equipArmorPiece(selectedArmor, player);
+                        pgController.equipArmorPiece(selectedArmor, player);
                     }
                     else if (selectedItem instanceof Weapon){
                         Weapon selectedWeapon = (Weapon) selectedItem;

@@ -66,8 +66,8 @@ public class CombatSystem {
                 money = random.nextInt(100);
             }
             int moneyCurrent = player.getMoney();
-            moneyCurrent =+ money;
-            player.setMoney(random.nextInt(moneyCurrent));
+            moneyCurrent = moneyCurrent + money;
+            player.setMoney(moneyCurrent);
             System.out.println("Hai ottenuto: " + money +" monete!");
             
         }

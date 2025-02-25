@@ -52,7 +52,7 @@ public class MazeGenerator {
             }
         }
         // Genera il percorso principale
-        createPath(1, 0);
+        createPath(1, 0, size);
 
         // Aggiungi entrata e uscita
         maze[1][0] = new Room("Ingresso", "L'ingresso del labirinto.");
@@ -60,7 +60,7 @@ public class MazeGenerator {
         maze[size - 2][size - 1] = new Room("Uscita", "L'uscita del labirinto.");
     }
 
-    private void createPath(int startX, int startY) {
+    private void createPath(int startX, int startY, int size) {
         Stack<int[]> stack = new Stack<>();
         boolean[][] visited = new boolean[size][size];
         int[] dx = {0, 1, 0, -1};
@@ -89,6 +89,11 @@ public class MazeGenerator {
                     stack.push(new int[]{nx, ny});
                 }
             }
+        }
+        if(maze[size-2][size-2] == null){
+            maze[size-2][size-2] = new Room("","");
+            visited[size-2][size-2] = true;
+            stack.push(new int[]{size-2, size-2});
         }
     }
 

@@ -6,7 +6,7 @@ import org.Model.Room;
 public class GameHandler {
 
 
-    public void nuovaPartita(GameDifficulty difficolta, MazeGenerator mazeGenerator, Player player) {
+    public void nuovaPartita(GameDifficulty difficolta, MazeGenerator mazeGenerator, Player player , PlayerController pgController) {
 
         // Definisci la dimensione del labirinto in base alla difficoltà
         int mazeSize = switch (difficolta) {
@@ -29,7 +29,7 @@ public class GameHandler {
 
         //Genera il giocatore
         System.out.println("con quale nome vuoi essere ricordato avventuriero?");
-        player.pgGenerator(player);
+        pgController.pgGenerator(player);
     }
 
     public void caricaPartita() {

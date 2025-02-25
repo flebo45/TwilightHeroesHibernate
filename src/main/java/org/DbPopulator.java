@@ -18,12 +18,12 @@ public class DbPopulator {
         Session session = sf.openSession();
 
         session.beginTransaction();
-        /**
+      
         List<Monster> monsters = MonsterFactory.loadMonster("src/main/java/org/monster.txt");
         for(Monster monster : monsters){
             session.persist(monster);
         }
-         **/
+        
 
         /**
         List<Trap> traps = TrapFactory.loadTraps("src/main/java/org/trap.txt");
