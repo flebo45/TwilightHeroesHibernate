@@ -1,6 +1,8 @@
 package org.Model;
 
 
+import org.Controller.PlayerController;
+
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -17,7 +19,7 @@ public class ConsumableSpecial extends Consumables {
     }
 
     @Override
-    public void consume(Player player) {
+    public void consume(Player player, PlayerController pgController) {
         switch (effectType) {
             case "teleport":
                   // Logica specifica

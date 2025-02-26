@@ -283,7 +283,7 @@ public class Master {
                 // Recupera l'oggetto selezionato
                 Consumables selectedConsumable = inventoryCons.get(selectedIndex);
                 System.out.println("Hai scelto: " + selectedConsumable.toString());
-                selectedConsumable.consume(player);
+                selectedConsumable.consume(player , pgController);
                 // Rimuovi l'oggetto dall'inventario dopo l'uso
                 player.getInventory().removeConsumable(selectedConsumable);
             } else {

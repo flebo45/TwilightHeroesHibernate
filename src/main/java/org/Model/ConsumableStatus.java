@@ -21,8 +21,8 @@ public class ConsumableStatus extends Consumables {
     }
 
     @Override
-    public void consume(Player player) {
-       PlayerController.pgHeal(healthRestored, manaRestored, player);
+    public void consume(Player player, PlayerController pgController) {
+        pgController.pgHeal(healthRestored, manaRestored, player);
         if(healthRestored == 0){
         System.out.println("Hai consumato " + name + ". Mana ripristinata di " + manaRestored + " punti.");
         }
