@@ -44,7 +44,7 @@ public class Monster extends Personage {
         public Monster(String name, String description,int currentHP, int str, int agl, int defF, int defM, String attack1, String attack2, int dmg1, int dmg2, int accuracy1, int accuracy2) {
             this.name = name;
             this.description = description; 
-            this.currentHP = currentHP;
+            this.HP = currentHP;
             this.AGL = agl;
             this.magic_DEF = defM;
             this.physic_DEF = defF;
