@@ -23,98 +23,178 @@ public class Shop extends Room {
 
 
     public void enterShop(Player player, Scanner scanner, Master master) {
-        System.out.println("Sei entrato nel negozio! Ecco cosa puoi acquistare:");
-        int index = 1;
+        System.out.println("Sei entrato nel negozio!");
+        
+        
+
+      
+        
+        
+
+        int money = player.getMoney();
+        System.out.println("Hai " + money + " monete d'oro. Cosa vuoi comprare?");
+       
+    
+        // Ciclo che continua a chiedere finché l'utente non fa una scelta valida per l'acquisto
+        
+        while (true) { // Ciclo infinito fino a quando l'utente non esce
+    // Stampa il menu solo la prima volta che entri nel ciclo
+    System.out.println("Scegli una categoria di acquisto:");
+    System.out.println("1. Armi");
+    System.out.println("2. Armature");
+    System.out.println("3. Consumabili");
+    System.out.println("4. Esci");
+    
+    // Leggi la scelta dell'utente
+    int choice = -1;
+    while (true) {
+        try {
+            choice = Integer.parseInt(scanner.nextLine()); // Leggi e interpreta la scelta
+            if (choice >= 1 && choice <= 4) {
+                break; // Se la scelta è valida, esci dal ciclo
+            } else {
+                System.out.println("Scelta non valida! Inserisci un numero tra 1 e 4.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Input non valido! Inserisci un numero.");
+        }
+    }
+
+    if (choice == 1) { // Armi
+        // Non ristampare il menu, mostra direttamente le armi
         System.out.println("Armi:");
+        int index = 1;
         for (Item item : shopWeapon) {
             System.out.println(index + ". " + item.getName() + " - Prezzo: " + getItemPrice(item) + " monete d'oro");
             index++;
         }
+        System.out.println("Inserisci il numero dell'oggetto che vuoi comprare o premi '6' per tornare al menu principale!");
 
+        int itembuy = -1;
+        while (true) {
+            try {
+                itembuy = Integer.parseInt(scanner.nextLine());
+                if (itembuy == 6) { // Se premi 6, torna al menu principale
+                    break; // Esci dal ciclo e torna al menu principale
+                } else if (itembuy >= 1 && itembuy <= shopWeapon.size()) {
+                    break; // Se la scelta è valida, continua con l'acquisto
+                } else {
+                    System.out.println("Numero non valido. Inserisci un numero tra 1 e " + shopWeapon.size() + " o premi '6' per tornare.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido! Inserisci un numero.");
+            }
+        }
+
+        if (itembuy == 6) {
+            continue; // Torna al menu principale
+        }
+
+        Item selectedItem = shopWeapon.get(itembuy - 1);
+        int price = getItemPrice(selectedItem);
+        if (money >= price) {
+            money -= price;
+            player.setMoney(money);
+            Weapon selectedWeapon = (Weapon) selectedItem;
+            player.getInventory().addWeapon(selectedWeapon);
+            shopWeapon.remove(selectedItem);
+            System.out.println("Hai acquistato: " + selectedItem.getName());
+            System.out.println("Monete rimanenti: " + player.getMoney());
+        } else {
+            System.out.println("Non hai abbastanza monete per acquistare questo oggetto!");
+        }
+
+    } else if (choice == 2) { // Armature
         System.out.println("Armature:");
+        int index = 1;
         for (Item item : shopArmor) {
             System.out.println(index + ". " + item.getName() + " - Prezzo: " + getItemPrice(item) + " monete d'oro");
             index++;
         }
-        
-        System.out.println("Consuambili:");
-        for (Consumables consumable: shopConsumable) {
+        System.out.println("Inserisci il numero dell'oggetto che vuoi comprare o premi '6' per tornare al menu principale!");
+
+        int itembuy = -1;
+        while (true) {
+            try {
+                itembuy = Integer.parseInt(scanner.nextLine());
+                if (itembuy == 6) { // Se premi 6, torna al menu principale
+                    break;
+                } else if (itembuy >= 1 && itembuy <= shopArmor.size()) {
+                    break;
+                } else {
+                    System.out.println("Numero non valido. Inserisci un numero tra 1 e " + shopArmor.size() + " o premi '6' per tornare.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido! Inserisci un numero.");
+            }
+        }
+
+        if (itembuy == 6) {
+            continue; // Torna al menu principale
+        }
+
+        Item selectedItem = shopArmor.get(itembuy - 1);
+        int price = getItemPrice(selectedItem);
+        if (money >= price) {
+            money -= price;
+            player.setMoney(money);
+            Armor selectedArmor = (Armor) selectedItem;
+            player.getInventory().addArmor(selectedArmor);
+            shopArmor.remove(selectedItem);
+            System.out.println("Hai acquistato: " + selectedItem.getName());
+            System.out.println("Monete rimanenti: " + player.getMoney());
+        } else {
+            System.out.println("Non hai abbastanza monete per acquistare questo oggetto!");
+        }
+
+    } else if (choice == 3) { // Consumabili
+        System.out.println("Consumabili:");
+        int index = 1;
+        for (Consumables consumable : shopConsumable) {
             System.out.println(index + ". " + consumable.getName() + " - Prezzo: " + getConsumablePrice(consumable) + " monete d'oro");
             index++;
         }
-        int money = player.getMoney();
-        System.out.println("Hai " + money + " monete d'oro. Cosa vuoi comprare?");
-        System.out.println("1. Armi");
-        System.out.println("2. Armature");
-        System.out.println("3. Consumabili");
-        System.out.println("");
-        System.out.println("4. esci");
+        System.out.println("Inserisci il numero dell'oggetto che vuoi comprare o premi '6' per tornare al menu principale!");
 
-        int choice = Integer.parseInt(scanner.nextLine()); // Metodo per leggere l'input del giocatore
-
-        if (choice == 1 ){
-                System.out.println("Inserisci il numero dell'oggetto che vuoi comprare!");
-                int itembuy = Integer.parseInt(scanner.nextLine());
-                if (itembuy <= shopWeapon.size()) {
-                    Item selectedItem = shopWeapon.get(choice - 1);
-                    int price = getItemPrice(selectedItem);
-                    if (money >= price) {
-                        money -= price;
-                        player.setMoney(money);
-                        Weapon selectedWeapon = (Weapon) selectedItem;
-                         player.getInventory().addWeapon(selectedWeapon);
-                         shopWeapon.remove(selectedItem);
-                         System.out.println("Hai acquistato: " + selectedItem.getName());
-                    }
-                    else {
-                        System.out.println("Non hai abbastanza monete per acquistare questo oggetto!");
-                } 
-            }
-        }
-        else if (choice == 2) {
-            System.out.println("Inserisci il numero dell'oggetto che vuoi comprare!");
-            int itembuy = Integer.parseInt(scanner.nextLine());
-            if (itembuy <= shopArmor.size()) {
-                Item selectedItem = shopArmor.get(choice - 1);
-                int price = getItemPrice(selectedItem);
-                if (money >= price) {
-                    money -= price;
-                    player.setMoney(money);
-                    Armor selectedArmor = (Armor) selectedItem;
-                            player.getInventory().addArmor(selectedArmor);
-                            shopArmor.remove(selectedItem);
-                            System.out.println("Hai acquistato: " + selectedItem.getName());
-                        }
-                    }
-                    else {
-                        System.out.println("Non hai abbastanza monete per acquistare questo oggetto!");
-
-        }
-    }
-       else if(choice == 3){
-            System.out.println("Inserisci il numero dell'oggetto che vuoi comprare!");
-            int itembuy = Integer.parseInt(scanner.nextLine());
-            if (itembuy <= shopConsumable.size()) {
-                Consumables selectedConsumable = shopConsumable.get(choice - 1);
-                int price = getConsumablePrice(selectedConsumable);
-                if (money >= price) {
-                    money =- price;
-                    player.setMoney(money);
-                    player.getInventory().addConsumables(selectedConsumable);
-                    shopConsumable.remove(selectedConsumable);
-                    System.out.println("Hai acquistato: " + selectedConsumable.getName());
+        int itembuy = -1;
+        while (true) {
+            try {
+                itembuy = Integer.parseInt(scanner.nextLine());
+                if (itembuy == 6) { // Se premi 6, torna al menu principale
+                    break;
+                } else if (itembuy >= 1 && itembuy <= shopConsumable.size()) {
+                    break;
                 } else {
-                    System.out.println("Non hai abbastanza monete per acquistare questo oggetto!");
+                    System.out.println("Numero non valido. Inserisci un numero tra 1 e " + shopConsumable.size() + " o premi '6' per tornare.");
                 }
-            } else {
-                System.out.println("Scelta non valida.");
+            } catch (NumberFormatException e) {
+                System.out.println("Input non valido! Inserisci un numero.");
             }
-    }
-    else if(choice == 4){
-        master.movePlayer(scanner);
+        }
+
+        if (itembuy == 6) {
+            continue; // Torna al menu principale
+        }
+
+        Consumables selectedConsumable = shopConsumable.get(itembuy - 1);
+        int price = getConsumablePrice(selectedConsumable);
+        if (money >= price) {
+            money -= price;
+            player.setMoney(money);
+            player.getInventory().addConsumables(selectedConsumable);
+            shopConsumable.remove(selectedConsumable);
+            System.out.println("Hai acquistato: " + selectedConsumable.getName());
+            System.out.println("Monete rimanenti: " + player.getMoney());
+        } else {
+            System.out.println("Non hai abbastanza monete per acquistare questo oggetto!");
+        }
+
+    } else if (choice == 4) { // Esci
+        master.movePlayer(scanner); // Uscita dal negozio
+        break; // Interrompe il ciclo
     }
 }
-
+    }
 
 public List<Weapon> getShopWeapons() {
     return shopWeapon;
