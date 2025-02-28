@@ -31,10 +31,14 @@ public class Room {
     @Transient
     Trap trap;
 
+    @Transient
+    Boolean visited = false;
+
     public Room() {}
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
+
     }
 
     public String getName() {

@@ -15,7 +15,7 @@ public class CombatSystem {
     public static void startCombat(Player player, Monster monster) {
         System.out.println("Inizia il combattimento!");
 
-        while (player.getCurrentHP() > 0 && monster.getCurrentHP() > 0) {
+        while (player.getCurrentHP() > 0 && monster.getCurrentHP() > 0) { //Cambiare con HP 
             System.out.println("\nTurno del giocatore!");
             System.out.println("Scegli l'attacco:");
             System.out.println("1. " + player.getWeapon().getAttackP() + " (Danno: " + player.getWeapon().getDmgP() + ", Accuratezza: " + player.getWeapon().getPrimaryAccuracy() + ")");
@@ -54,7 +54,7 @@ public class CombatSystem {
             // Stato attuale
             System.out.println("\nStato attuale:");
             System.out.println("Giocatore - Vita: " + player.getCurrentHP());
-            System.out.println("Mostro - Vita: " + monster.getCurrentHP());
+            System.out.println("Mostro - Vita: " + monster.getCurrentHP()); //da cambiare con HP
         }
 
         if (player.getCurrentHP() <= 0) {

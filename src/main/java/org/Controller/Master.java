@@ -2,7 +2,12 @@ package org.Controller;
 
 import org.Model.*;
 import org.TechnicalService.PersistentManager;
+import org.View.CombactVIew;
+import org.View.CombactView;
+import org.View.InventoryView;
 import org.View.Menu;
+import org.View.MoveView;
+import org.View.PlayerView;
 
 import java.io.IOException;
 import java.util.List;
@@ -76,13 +81,12 @@ public class Master {
             System.out.println(player.getPosition().getPositionX());
             System.out.println(player.getPosition().getPositionY());
             System.out.println("\nBenvenuto, " + player.getName());
-            Scanner scanner = new Scanner(System.in);
                 boolean gameRunning = true;
                 displayCurrentRoom();
                 while (gameRunning) {
                     if (player.getPosition().getMonster() != null) {
                         Monster monster = player.getPosition().getMonster();
-                        System.out.println("C'è un mostro qui: " + monster.getName() + "!");
+                        CombactView.MonsterEnc(monster);
                         CombatSystem.startCombat(player, monster);
                         player.getPosition().setMonster(null); // Rimuovi il mostro sconfitto
                     }
@@ -92,7 +96,7 @@ public class Master {
                         if(result == true){player.getPosition().setTrap(null);}
                         else{
                             if(player.getCurrentHP()<= 0){gameOver();}
-                            System.out.println("La trappola è rimasta attiva, \nper effettuare qualsiasi azione devi prima superare la prova, altrimenti si riattiverà");
+                            CombactView.TrapEnc();
                         }
                         
                     }
@@ -136,11 +140,11 @@ public class Master {
             }
     
 
-    public void movePlayer(Scanner scanner) {
-        System.out.println("Usa W (su), A (sinistra), S (giù), D (destra) per muoverti.");
-      
-    
-        String action = scanner.nextLine().toLowerCase(); // Legge il comando dell'utente
+    public void movePlayer() {
+       
+        String action = MoveView.PrintMove();
+        
+         // Legge il comando dell'utente
         int currentX = player.getPosition().getPositionX();
         int currentY = player.getPosition().getPositionY();
     
@@ -152,7 +156,7 @@ public class Master {
             case "s" -> newX = currentX + 1; // Giù
             case "d" -> newY = currentY + 1; // Destra
             default -> {
-                System.out.println("Comando non valido. Usa W, A, S o D.");
+               MoveView.ErrorMove();
                 return;
             }
         }
@@ -160,22 +164,23 @@ public class Master {
         // Controlla se la nuova posizione è valida
         if (newX >= 0 && newX < maze.length && newY >= 0 && newY < maze[0].length && maze[newX][newY] != null) {
             player.setPosition(maze[newX][newY]);
-            System.out.println("Ti sei spostato nella stanza: " + maze[newX][newY].getName());
-            System.out.println(maze[newX][newY].getDescription());
+            MoveView.NewPosition(maze, newX, newY);
         } else {
-            System.out.println("Non puoi muoverti in quella direzione! Prova un'altra direzione.");
+            MoveView.InvalidPosition();
         }
         MazePrinter.printMaze(maze, player);
     }
 
     private void examineRoom(Room currentRoom) {
-        System.out.println("Esamini la stanza...");
-    
+
+        PlayerView.examineRoom();
+       
         boolean foundSomething = false;
     
         // Se ci sono consumabili, raccoglili
         if (currentRoom.getConsumables() != null) {
-            System.out.println(" Hai trovato un consumabile: " + currentRoom.getConsumables().toString());
+            int a = 1;
+            PlayerView.ExamineReuslt(a, currentRoom);
             player.getInventory().addConsumables(currentRoom.getConsumables());
             currentRoom.setConsumables(null); // Rimuovi il consumabile dalla stanza
             foundSomething = true;
@@ -183,7 +188,8 @@ public class Master {
     
         // Se c'è un'arma, raccoglila
         if (currentRoom.getWeapon() != null) {
-            System.out.println("Hai trovato un'arma: " + currentRoom.getWeapon().toString());
+            int b = 2;
+            PlayerView.ExamineReuslt(b, currentRoom);
             player.getInventory().addWeapon(currentRoom.getWeapon());
             currentRoom.setWeapon(null); // Rimuovi l'arma dalla stanza
             foundSomething = true;
@@ -191,7 +197,8 @@ public class Master {
     
         // Se c'è un'armatura, raccoglila
         if (currentRoom.getArmor() != null) {
-            System.out.println("Hai trovato un'armatura: " + currentRoom.getArmor().toString());
+            int c = 3;
+            PlayerView.ExamineReuslt(c, currentRoom);
             player.getInventory().addArmor(currentRoom.getArmor());
             currentRoom.setArmor(null); // Rimuovi l'armatura dalla stanza
             foundSomething = true;
@@ -199,69 +206,44 @@ public class Master {
     
         // Se la stanza era vuota
         if (!foundSomething) {
-            System.out.println("Non c'è niente nella stanza.");
+            PlayerView.ExamineReuslt(0, currentRoom);
         }
     }
     
 
-        private void checkInventory(Scanner scanner) {
-            System.out.println("Inventario:");
-        
+        private void checkInventory() {
             // Ottieni l'inventario del giocatore
             List<Consumables> inventoryCons = player.getInventory().getConsumables();
             List<Item> inventoryItem = player.getInventory().getItemList();
+            String action;
             if (inventoryCons.isEmpty() && inventoryItem.isEmpty()) {
-                System.out.println("Il tuo inventario è vuoto.");
+
+                InventoryView.InvView(inventoryCons, inventoryItem);
+
             } else if (inventoryItem.isEmpty()) {
-                // Itera sull'inventario
-                System.out.println("-Consuambili:");
-                for (int i = 0; i < inventoryCons.size(); i++) {
-                    System.out.println((i + 1) + ". " + inventoryCons.get(i).toString());
-                }
-                System.out.println("Vuoi utilizzare un consumabile?");
-                System.out.println("1. Si");
-                System.out.println("2. No");
-                String action = scanner.nextLine();
+            
+                action = InventoryView.InvView(inventoryCons, inventoryItem);
+
                 if ("1".equals(action)) {
-                useConsumable(inventoryCons,scanner);
+
+                useConsumable(inventoryCons);
                 }
             }
             else if(inventoryCons.isEmpty()){
-                System.out.println("-Oggetti:");
-                for (int i= 0; i< inventoryItem.size(); i++) {
-                    System.out.println((i+1) + ". " + inventoryItem.get(i).toString());
-                }
-                System.out.println("Vuoi equiapggiare una nuova armatura o arma?");
-                System.out.println("1. Si");
-                System.out.println("2. No");
-                String action = scanner.nextLine();
-                    
+                action = InventoryView.InvView(inventoryCons, inventoryItem);
                 if ("1".equals(action)) {
-                    equipeItem(scanner,inventoryItem);
+                    equipeItem(inventoryItem);
                 }
             }
             else{
-                System.out.println("-Consuambili");
-                for (int i = 0; i < inventoryCons.size(); i++) {
-                    System.out.println((i + 1) + ". " + inventoryCons.get(i).toString());
-                }
-                System.out.println("\n");
-                System.out.println("-Oggetti:");
-                for (int i= 0; i< inventoryItem.size(); i++) {
-                    System.out.println((i+1) + ". " + inventoryItem.get(i).toString());
-                }
-                System.out.println("\n");
-                System.out.println("Vuoi utilizzare un consumabile o equipaggiare un oggetto?");
-                System.out.println("1. consumabile");
-                System.out.println("2. equipaggiamento");
-                String action = scanner.nextLine();
+                action = InventoryView.InvView(inventoryCons, inventoryItem);
                 if ("1".equals(action)) {
-                    useConsumable(inventoryCons,scanner);
+                    useConsumable(inventoryCons);
                     
                 }
                 
                 else{
-                    equipeItem(scanner,inventoryItem);
+                    equipeItem(inventoryItem);
                 }
             }
         }
@@ -270,57 +252,17 @@ public class Master {
        pgController.getStatus(player);
     }
 
-    private void useConsumable(List<Consumables> inventoryCons, Scanner scanner){
+    private void useConsumable(List<Consumables> inventoryCons){
 
-    
-        System.out.println("Seleziona il numero del consumabile da utilizzare:");
-        int selectedIndex;
-        
-        try {
-            selectedIndex = Integer.parseInt(scanner.nextLine()) - 1;
-
-            if (selectedIndex >= 0 && selectedIndex < inventoryCons.size()) {
-                // Recupera l'oggetto selezionato
-                Consumables selectedConsumable = inventoryCons.get(selectedIndex);
-                System.out.println("Hai scelto: " + selectedConsumable.toString());
-                selectedConsumable.consume(player , pgController);
-                // Rimuovi l'oggetto dall'inventario dopo l'uso
-                player.getInventory().removeConsumable(selectedConsumable);
-            } else {
-                System.out.println("Scelta non valida.");
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Inserisci un numero valido.");
-        }
+        Consumables selectedConsumable =InventoryView.UseConsumable(inventoryCons);
+        selectedConsumable.consume(player , pgController);
+        // Rimuovi l'oggetto dall'inventario dopo l'uso
+        player.getInventory().removeConsumable(selectedConsumable);
     }
 
-    private void equipeItem(Scanner scanner, List<Item> inventoryItem){
+    private void equipeItem(List<Item> inventoryItem){
 
-            System.out.println("Seleziona il numero dell'equipaggiamento che vuoi utilizzare");
-
-            int selectedIndex;
-            try {
-                selectedIndex = Integer.parseInt(scanner.nextLine()) - 1;
-    
-                if (selectedIndex >= 0 && selectedIndex < inventoryItem.size()) {
-                    // Recupera l'oggetto selezionato
-                    Item selectedItem = inventoryItem.get(selectedIndex);
-                    System.out.println("Hai scelto: " + selectedItem.toString());
-                    if (selectedItem instanceof Armor){
-                        Armor selectedArmor = (Armor) selectedItem;
-                        pgController.equipArmorPiece(selectedArmor, player);
-                    }
-                    else if (selectedItem instanceof Weapon){
-                        Weapon selectedWeapon = (Weapon) selectedItem;
-                        player.setWeapon(selectedWeapon);;
-                    }
-                    
-                } else {
-                    System.out.println("Scelta non valida.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Inserisci un numero valido.");
-            }
+           
        }
 
     public static void gameOver(){
