@@ -106,22 +106,17 @@ public class Master {
                         ((Shop) maze[playerX][playerY]).enterShop(player, scanner, master);
                     } 
                     
-                    System.out.println("\nCosa vuoi fare?");
-                    System.out.println("1. Muoviti");
-                    System.out.println("2. Esamina la stanza");
-                    System.out.println("3. Controlla l'inventario");
-                    System.out.println("4. Controlla lo status del personaggio");
-                    System.out.println("5. Esci dal gioco");
-                    
-                    String action = scanner.nextLine();
+
+                  
+                    String action = MoveView.NextMove();
                     
                     switch (action) {
                         case "1" -> // Movimento
-                            movePlayer(scanner);
+                            movePlayer();
                         case "2" -> // Esamina la stanza
                             examineRoom(player.getPosition());
                         case "3" -> // Controlla inventario
-                            checkInventory(scanner);
+                            checkInventory();
                         case "4" -> 
                             checkStatusPg();
                         case "5" -> {
