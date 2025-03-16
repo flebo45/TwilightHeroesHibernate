@@ -87,4 +87,18 @@ public class Weapon extends Item{
         this.accuracyS = accuracy2;
 
     }
+
+    @Override
+    public String toString() {
+        return "\nWeapon{" +
+                "NOME='" + name + '\'' +
+                ", DESCRIZIONE='" + description + '\'' +
+                "ATTACCO PRINCIPALE='" + AttackP + '\'' +
+                ", DANNO ATTACCO PRINCIPALE=" + dmgP +
+                ", PRECISIONE ATTACCO PRINCIPALE=" + accuracyP +
+                ", ATTACCO SPECIALE='" + AttackS + '\'' +
+                ", DANNO ATTACCO SPECIALE=" + dmgS +
+                ", PRECISIONE ATTACCO SPECIALE=" + accuracyS +
+                '}';
+    }
 }

@@ -1,6 +1,5 @@
 package org.Model;
 
-import org.Controller.PlayerController;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -38,9 +37,9 @@ public class ConsumableTime extends Consumables {
         
     }
 
-    @Override
+    /**@Override
     public void consume(Player player , PlayerController pgController) {
         //player.applyTemporaryEffect(effectType, value, duration);
         System.out.println("Hai consumato " + name + ". Effetto " + effectType + " attivo per " + duration + " turni.");
-    }
+    }*/
 }

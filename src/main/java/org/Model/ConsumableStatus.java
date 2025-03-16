@@ -1,6 +1,6 @@
 package org.Model;
 
-import org.Controller.PlayerController;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
@@ -20,6 +20,7 @@ public class ConsumableStatus extends Consumables {
         this.healthRestored = healthRestored;
     }
 
+    /**
     @Override
     public void consume(Player player, PlayerController pgController) {
         pgController.pgHeal(healthRestored, manaRestored, player);
@@ -32,5 +33,5 @@ public class ConsumableStatus extends Consumables {
         else{
             System.out.println("Hai consumato " + name + ". Hp e Mana ripristinati di " +manaRestored + " e " + healthRestored + " punti.");
         }
-    }
+    }*/
 }

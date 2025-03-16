@@ -2,6 +2,7 @@ package org.TechnicalService;
 
 import com.sun.jna.platform.win32.Netapi32Util;
 import org.Model.*;
+import org.Model.Character;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -17,7 +18,7 @@ public class HibernateService {
                 .addAnnotatedClass(Trap.class)
                 .addAnnotatedClass(Personage.class)
                 .addAnnotatedClass(Monster.class)
-                .addAnnotatedClass(Player.class)
+                .addAnnotatedClass(Character.class)
                 .addAnnotatedClass(Item.class)
                 .addAnnotatedClass(Weapon.class)
                 .addAnnotatedClass(Consumables.class)

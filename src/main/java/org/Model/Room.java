@@ -3,6 +3,8 @@ package org.Model;
 import jakarta.persistence.*;
 
 import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name="ROOMS")
@@ -34,10 +36,18 @@ public class Room {
     @Transient
     Boolean visited = false;
 
+    @Transient
+    private final Map<Direction, Boolean> walls = new HashMap<>();
+
     public Room() {}
-    public Room(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Room(int x, int y) {
+        this.positionX = x;
+        this.positionY = y;
+
+        //walls initialization
+        for (Direction direction : Direction.values()) {
+            walls.put(direction, true);
+        }
 
     }
 
@@ -115,6 +125,22 @@ public class Room {
         throw new UnsupportedOperationException("Unimplemented method 'setshop'");
     }
 
+    public void removeWall(Direction dir) {
+        walls.put(dir, false);
+    }
+
+    public boolean hasWall(Direction dir) {
+        return walls.get(dir);
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -122,5 +148,10 @@ public class Room {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome della stanza: " + this.name + "\nDescrizione: " + this.description;
     }
 }

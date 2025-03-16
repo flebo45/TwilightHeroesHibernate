@@ -2,49 +2,48 @@ package org.View;
 
 import java.util.Scanner;
 
-import org.Controller.GameDifficulty;
+public class GameView {
 
-public class Menu {
     private final Scanner scanner;
 
-    public Menu() {
+    public GameView() {
         this.scanner = new Scanner(System.in);
     }
 
-    public int mostraMenuPrincipale() {
+    public void showMainMenu(){
         System.out.println("|=== TWILIGHT HEROES ===|");
         System.out.println("|1. Nuova Partita       |");
         System.out.println("|2. Carica Partita      |");
         System.out.println("|3. Esci                |");
         System.out.println("|=======================|");
         System.out.print("Seleziona un'opzione:    ");
-        return scanner.nextInt();
+
     }
 
-    public GameDifficulty scegliDifficolta() {
+    public void showDifficultyMenu(){
         System.out.println("\n|=== Seleziona la Difficoltà ===|");
         System.out.println("|1. Facile                      |");
         System.out.println("|2. Normale                     |");
         System.out.println("|3. Difficile                   |");
         System.out.print("Inserisci il numero della difficoltà: ");
-
-        int scelta = scanner.nextInt();
-        scanner.nextLine(); // Consuma il newline
-
-        switch (scelta) {
-            case 1:
-                return GameDifficulty.EASY;
-            case 2:
-                return GameDifficulty.NORMAL;
-            case 3:
-                return GameDifficulty.HARD;
-            default:
-                System.out.println("Opzione non valida. Impostata difficoltà predefinita: Normale.");
-                return GameDifficulty.NORMAL;
-        }
     }
 
-    public void mostraMessaggio(String messaggio) {
-        System.out.println(messaggio);
+
+
+    public String getUserInput(){
+        return scanner.nextLine();
     }
+
+    public void exitGame(){
+        System.out.println("Grazie per aver giocato");
+    }
+
+    public void invalidOption(){
+        System.out.println("Opzione non valida. Riprova!");
+    }
+
+    public void loadGame() {
+        System.out.println("Funzione non ancora implementata.");
+    }
+
 }

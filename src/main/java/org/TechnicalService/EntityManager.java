@@ -1,6 +1,7 @@
 package org.TechnicalService;
 
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -81,6 +82,27 @@ public class EntityManager {
     }
 
     /**
+     * Method that returns an object, found by a given attribute and its value.
+     * @param entityType The class type of the entity.
+     * @param attribute The name of the attribute to search by.
+     * @param attributeValue The value of the attribute.
+     * @return The specified object matching the attribute, or null if not found.
+     * @param <T> The entity type.
+     */
+    public <T> T findByAttribute(Class<T> entityType, String attribute, Object attributeValue) {
+        T result = null;
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM " + entityType.getSimpleName() + " a WHERE a." + attribute + " = :attributeValue";
+            Query query = session.createQuery(hql, entityType);
+            query.setParameter("attributeValue", attributeValue);
+            result = (T) query.getSingleResult();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
      * Method that returns all the objects from a table in the db, so all the objects from a certain class
      * @param entityType
      * @return              all the objects from a table
@@ -92,6 +114,16 @@ public class EntityManager {
             result = session.createQuery("FROM " + entityType.getSimpleName(), entityType).list();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return result;
+    }
+
+    public <T> List<T> findRandomElements(Class<T> entityType, int maxElements) {
+        List<T> result = null;
+        try (Session session = sessionFactory.openSession()) {
+            result = session.createQuery("FROM " + entityType.getSimpleName() + " ORDER BY FUNCTION('RAND')", entityType).setMaxResults(maxElements).list();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return result;
     }

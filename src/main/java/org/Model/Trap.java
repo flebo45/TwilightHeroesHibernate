@@ -137,9 +137,9 @@ public class Trap {
 
     private int getPlayerStat(Player player) {
         switch (stat.toLowerCase()) {
-            case "agl": return player.getAGL();
-            case "str": return player.getSTR();
-            case "magic_d": return player.getMagic_DEF();
+            case "agl": return player.getAgility();
+            case "str": return player.getStrength();
+            case "magic_d": return player.getMagicDefense();
             case "luck" : return player.getLuck();
             default: return 0; // Se la statistica non è riconosciuta, assume 0
         }

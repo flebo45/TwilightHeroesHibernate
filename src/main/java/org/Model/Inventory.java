@@ -5,32 +5,29 @@ import java.util.ArrayList;
 public class Inventory {
     ArrayList<Item> inventoryItem = new ArrayList<>();
     ArrayList<Consumables> inventoryConsumables= new ArrayList<>();
+
+    public Inventory() {}
    
 
     public ArrayList<Item> getItemList() {
-        return inventoryItem;
-    }
-    public void addItemList(Item item) {
-        inventoryItem.add(item);
+        return this.inventoryItem;
     }
 
     public ArrayList<Consumables> getConsumables() {
-        return inventoryConsumables;
+        return this.inventoryConsumables;
     }
 
     public void addConsumables(Consumables consumables) {
-        inventoryConsumables.add(consumables);
+        this.inventoryConsumables.add(consumables);
     }
-    public void addWeapon(Weapon weapon) {
-        inventoryItem.add(weapon);
+    public void addItem(Item item) {
+        this.inventoryItem.add(item);
     }
     public void removeConsumable(Consumables item) {
-        inventoryConsumables.remove(item);
-}
-public void addArmor(Armor armor) {
-    inventoryItem.add(armor);
-}
+        this.inventoryConsumables.remove(item);
+    }
+    public void removeItem(Item item) {
+        this.inventoryItem.remove(item);
+    }
 
-
-    
 }

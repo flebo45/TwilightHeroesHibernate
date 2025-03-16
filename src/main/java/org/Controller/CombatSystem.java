@@ -6,7 +6,7 @@ import org.Model.Player;
 
 import java.util.Random;
 import java.util.Scanner;
-
+/**
 public class CombatSystem {
 
     private static final Random random = new Random();
@@ -89,4 +89,4 @@ public class CombatSystem {
         System.out.println(attackerName + " infligge " + damage + " danni a " + defender.getName() + "!");
         defender.takeDamage(damage);
     }
-}
+}*/

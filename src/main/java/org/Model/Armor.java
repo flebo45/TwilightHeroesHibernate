@@ -47,9 +47,24 @@ public class Armor extends Item {
     public String getPart() { return part; }
     public void setPart(String part) { this.part = part; }
 
-    // Metodo per visualizzare i dettagli dell'armatura
+    public int getBonus(String attribute) {
+        if(attribute.equals(this.statEnch)) {
+            return this.stat;
+        }else{
+            return 0;
+        }
+    }
+
     @Override
     public String toString() {
-        return name + " (" + part + ") - Aumenta " + statEnch + " di " + stat;
+        return "\nArmor{" +
+                "NOME='" + name + '\'' +
+                ", DESCRIZIONE='" + description + '\'' +
+                ", PARTE='" + part + '\'' +
+                ", STATISTICA MIGLIORATA='" + statEnch + '\'' +
+                ", VALORE STATISTICA MIGLIORATA=" + stat +
+                ", SET='" + armorSet + '\'' +
+                ", EQUIPAGGIATO=" + equipped +
+                '}';
     }
 }

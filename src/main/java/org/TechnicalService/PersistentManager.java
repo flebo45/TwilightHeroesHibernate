@@ -1,8 +1,11 @@
 package org.TechnicalService;
 
 import org.Model.*;
+import org.Model.Character;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PersistentManager {
     private static PersistentManager instance;
@@ -36,5 +39,13 @@ public class PersistentManager {
 
     public List<Consumables> loadConsumables(){
         return ConsumableDAO.findAllConsumables();
+    }
+
+    public List<List<?>> loadShopItems(int maxItems) {
+        return List.of(ConsumableDAO.findShopConsumables(maxItems), ItemDAO.findShopArmor(maxItems), ItemDAO.findShopWeapon(maxItems));
+    }
+
+    public Character loadCharacter(String name) {
+        return PersonageDAO.findCharacterByName(name);
     }
 }

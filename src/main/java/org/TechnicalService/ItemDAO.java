@@ -14,4 +14,12 @@ public class ItemDAO {
     public static List<Weapon> findAllWeapons(){
         return EntityManager.getInstance().findAll(Weapon.class);
     }
+
+    public static List<Armor> findShopArmor(int maxItem) {
+        return EntityManager.getInstance().findRandomElements(Armor.class, maxItem);
+    }
+
+    public static List<Weapon> findShopWeapon(int maxItem) {
+        return EntityManager.getInstance().findRandomElements(Weapon.class, maxItem);
+    }
 }

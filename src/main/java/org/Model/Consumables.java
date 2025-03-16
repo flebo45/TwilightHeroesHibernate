@@ -1,6 +1,5 @@
 package org.Model;
 
-import org.Controller.PlayerController;
 
 import jakarta.persistence.*;
 
@@ -26,8 +25,7 @@ public abstract class Consumables {
         this.description = description;
     }
 
-    // Metodo astratto che ogni consumabile implementerà
-    public abstract void consume(Player player , PlayerController pgController);
+
     public String getName(){
         return name;
     }
