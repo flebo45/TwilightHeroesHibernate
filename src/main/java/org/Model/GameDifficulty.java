@@ -2,8 +2,8 @@ package org.Model;
 
 public enum GameDifficulty {
     EASY(15, 10),
-    MEDIUM(20, 5),
-    HARD(30, 3);
+    MEDIUM(25, 5),
+    HARD(35, 3);
 
     private final int mazeSize;
     private final int maxShopItems;
