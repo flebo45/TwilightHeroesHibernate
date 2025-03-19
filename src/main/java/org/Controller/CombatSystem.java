@@ -1,11 +1,102 @@
 package org.Controller;
 
-import org.Model.Monster;
-import org.Model.Personage;
-import org.Model.Player;
 
-import java.util.Random;
-import java.util.Scanner;
+import org.Model.Monster;
+import org.Model.Player;
+import org.View.CombatView;
+import org.View.GameView;
+
+
+public class CombatSystem {
+    private final CombatView combatView;
+    private final GameView gameView;
+
+    public CombatSystem() {
+        this.gameView = new GameView();
+        this.combatView = new CombatView();
+    }
+
+    public void combat(Player pg, Monster monster) {
+        combatView.displayEncounter(monster);
+
+        while (pg.getCurrentHealtPoints() > 0 && monster.getCurrentHealtPoints() > 0) {
+            combatView.baseTurn(pg, monster);
+            
+            String input;
+            do {
+                input = gameView.getUserInput().trim();
+                System.out.println("DEBUG: Input ricevuto -> " + input);
+            } while (!isValidInput(input));
+
+            String pgAttack = attackChoice(input, pg);
+            System.out.println("DEBUG: Attacco scelto -> " + pgAttack);
+
+            int playerRoll = pg.getAgilityRoll();
+            int monsterRoll = monster.getAgilityRoll();
+            combatView.agilityRoll(playerRoll, monsterRoll);
+            System.out.println("DEBUG: Iniziativa - Giocatore: " + playerRoll + " vs Mostro: " + monsterRoll);
+
+            boolean playerFirst = playerRoll >= monsterRoll;
+            
+            if (playerFirst) {
+                playerTurn(pg, monster, pgAttack);
+                if (monster.getCurrentHealtPoints() > 0) {
+                    monsterTurn(pg, monster);
+                }
+            } else {
+                monsterTurn(pg, monster);
+                if (pg.getCurrentHealtPoints() > 0) {
+                    playerTurn(pg, monster, pgAttack);
+                }
+            }
+            
+            System.out.println("DEBUG: HP Giocatore: " + pg.getCurrentHealtPoints() + " | HP Mostro: " + monster.getCurrentHealtPoints());
+        }
+    }
+
+    private void playerTurn(Player pg, Monster monster, String pgAttack) {
+        int accuracy = pg.performAttack(pgAttack);
+        System.out.println("DEBUG: Precisione attacco -> " + accuracy);
+        
+        if (accuracy > 0) {
+            int dmg = pg.dmgCounter(pg.getWeapon().getDmgP(), monster.getPhysicalDefense());
+            System.out.println("DEBUG: Danno inflitto -> " + dmg);
+            monster.takeDamage(dmg);
+        } else {
+            combatView.attackMiss(pg.getName());
+        }
+    }
+
+    private void monsterTurn(Player pg, Monster monster) {
+        int monsterAttack = monster.selectAttack();
+        int accuracy = monster.performAttack(monsterAttack);
+        System.out.println("DEBUG: Precisione attacco mostro -> " + accuracy);
+        
+        if (accuracy > 0) {
+            int attackDmg = monster.dmgAttack(monsterAttack);
+            int dmg = monster.dmgCounter(attackDmg, pg.getPhysicalDefense());
+            System.out.println("DEBUG: Danno ricevuto -> " + dmg);
+            pg.takeDamage(dmg);
+        } else {
+            combatView.attackMiss(monster.getName());
+        }
+    }
+
+    private boolean isValidInput(String input) {
+        return input.equals("1") || input.equals("2");
+    }
+
+    public String attackChoice(String input, Player pg) {
+        return switch (input) {
+            case "1" -> pg.getWeapon().getAttackP();
+            case "2" -> pg.getWeapon().getAttackS();
+            default -> "Error";
+        };
+    }
+
+    
+}
+
 /**
 public class CombatSystem {
 

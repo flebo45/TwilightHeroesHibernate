@@ -80,6 +80,40 @@ public class Monster extends Personage{
         return this.damage2;
     }
 
+    public int selectAttack(){
+        int attack = random.nextInt(1);
+        return attack;
+    }
+
+
+    public int performAttack(int attack){
+        int hitRoll = random.nextInt(100) + 1;
+        int attackAccuracy;
+        if (attack == 1 ){
+             attackAccuracy = this.accuracy1;         
+        }
+        else{
+             attackAccuracy = this.accuracy2;
+ 
+        }
+         if (hitRoll > attackAccuracy) {
+            return attackAccuracy;
+         }
+         else {return 0;}
+     }
+
+     public int dmgAttack(int value){
+        int dmgAttack = 0;
+        if (value == 1 ){
+            dmgAttack = this.damage1;
+            return dmgAttack;}
+
+        else{
+            dmgAttack = this.damage2;
+            return dmgAttack;}
+        
+     }
+
 
 }
 

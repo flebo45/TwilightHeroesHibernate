@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Entity
 @Table(name = "characters")
@@ -121,6 +122,7 @@ public class Character {
     public void setArmor(Map<String, Armor> armor) {
         this.armor = armor;
     }
+
 
 
 }

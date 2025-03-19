@@ -1,5 +1,7 @@
 package org.Model;
 
+import java.util.Random;
+
 //import jakarta.persistence.*;
 
 import jakarta.persistence.MappedSuperclass;
@@ -7,6 +9,8 @@ import jakarta.persistence.Transient;
 
 @MappedSuperclass
 public abstract class Personage {
+    protected static final Random random = new Random();
+
     protected String name;
     protected int healtPoints;
     protected int strength;
@@ -103,8 +107,17 @@ public abstract class Personage {
         if(this.currentHealtPoints + heal > this.healtPoints) this.currentHealtPoints = healtPoints;
         else this.currentHealtPoints += heal;
     }
+    
+    public int getAgilityRoll(){
+        int value = this.agility + random.nextInt(20) + 1;
+        return value;
+    }
 
-
+    public int dmgCounter(int dmgAttack, int def){
+        int dmg = dmgAttack + this.strength - def;
+        dmg = Math.max(dmg, 0);
+        return dmg;
+    }
 
 
 }

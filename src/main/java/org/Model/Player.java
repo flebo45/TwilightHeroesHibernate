@@ -1,5 +1,7 @@
 package org.Model;
 
+import static org.Model.Personage.random;
+
 import jakarta.enterprise.inject.Model;
 
 public class Player extends Personage {
@@ -82,11 +84,22 @@ public class Player extends Personage {
         };
     }
 
-
     public int getFinalAttribute(String attribute) {
         int baseAttribute = this.getBaseStatistic(attribute);
         return baseAttribute + this.armor.getBonus(attribute);
 
+    }
+    public int performAttack(String attack) {
+        int hitRoll = random.nextInt(100) + 1;
+        int attackAccuracy;
+        
+        if (attack.equals(this.getWeapon().getAttackP())) {
+            attackAccuracy = this.getWeapon().getPrimaryAccuracy();
+        } else {
+            attackAccuracy = this.getWeapon().getSecondaryAccuracy();
+        }
+        
+        return hitRoll <= attackAccuracy ? attackAccuracy : 0;
     }
 }
 

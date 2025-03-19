@@ -2,6 +2,7 @@ package org.Controller;
 
 import org.Model.GameDifficulty;
 import org.Model.Maze;
+import org.Model.Monster;
 import org.Model.Player;
 import org.Model.Room;
 import org.View.GameView;
@@ -11,11 +12,13 @@ public class TwilightHeroesGame {
     private final GameView gameView;
     private final PlayerFacade playerFacade;
     private final MazeFacade mazeFacade;
+    private final CombatSystem CombatSystem;
 
     public TwilightHeroesGame() {
         this.gameView = new GameView();
         this.playerFacade = new PlayerFacade();
         this.mazeFacade = new MazeFacade();
+        this.CombatSystem = new CombatSystem();
     }
 
     public void initializeGame(){
@@ -79,6 +82,13 @@ public class TwilightHeroesGame {
         boolean game = true;
         while(game){
             this.mazeFacade.room(player.getPosition());
+            if(player.getPosition().getMonster() != null ){
+                Monster monster = player.getPosition().getMonster();
+                CombatSystem.combat(player, monster);
+            }
+            else if(player.getPosition().getTrap() != null){
+                System.out.print("sqweqwe");
+            }
             //check if there is a monster or a trap
             //After show the action and select one of them
             this.runPlayerAction(player, maze);

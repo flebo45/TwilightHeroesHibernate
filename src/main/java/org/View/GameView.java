@@ -34,6 +34,7 @@ public class GameView {
         return scanner.nextLine();
     }
 
+
     public void exitGame(){
         System.out.println("Grazie per aver giocato");
     }
