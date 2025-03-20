@@ -4,21 +4,22 @@ import org.Model.GameDifficulty;
 import org.Model.Maze;
 import org.Model.Monster;
 import org.Model.Player;
-import org.Model.Room;
+import org.Model.Trap;
 import org.View.GameView;
-import org.View.RoomView;
 
 public class TwilightHeroesGame {
     private final GameView gameView;
     private final PlayerFacade playerFacade;
     private final MazeFacade mazeFacade;
     private final CombatSystem CombatSystem;
+    private final TrapFacade trapFacade;
 
     public TwilightHeroesGame() {
         this.gameView = new GameView();
         this.playerFacade = new PlayerFacade();
         this.mazeFacade = new MazeFacade();
         this.CombatSystem = new CombatSystem();
+        this.trapFacade = new TrapFacade();
     }
 
     public void initializeGame(){
@@ -87,10 +88,9 @@ public class TwilightHeroesGame {
                 CombatSystem.combat(player, monster);
             }
             else if(player.getPosition().getTrap() != null){
-                System.out.print("sqweqwe");
+                Trap trap = player.getPosition().getTrap();
+                trapFacade.triggerTrap(player, trap);
             }
-            //check if there is a monster or a trap
-            //After show the action and select one of them
             this.runPlayerAction(player, maze);
         }
     }
@@ -117,6 +117,7 @@ public class TwilightHeroesGame {
                 break;
             }
             case "Examine": {
+                this.mazeFacade.examineRoom(player);
                 break;
             }
             case "Inventory": {

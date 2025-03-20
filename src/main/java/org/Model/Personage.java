@@ -108,6 +108,8 @@ public abstract class Personage {
         else this.currentHealtPoints += heal;
     }
     
+
+    
     public int getAgilityRoll(){
         int value = this.agility + random.nextInt(20) + 1;
         return value;

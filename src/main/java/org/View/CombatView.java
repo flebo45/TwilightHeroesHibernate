@@ -1,7 +1,7 @@
 package org.View;
 
 import org.Model.Monster;
-import org.Model.Player;
+import org.Model.Player; 
 
 public class CombatView {
 
@@ -28,4 +28,19 @@ public class CombatView {
 
     public void attackMiss(String name){
         System.out.println(name + " ha mancato l'attacco.");
-    }}
+    }
+
+    public void endRound(Player pg, Monster monster){
+        System.out.println(pg.getName() + " HP: " +pg.getHealtPoints()+ "/" +pg.getCurrentHealtPoints());
+        System.out.println(monster.getName() + "HP:  " + monster.getHealtPoints() + "/" + monster.getCurrentHealtPoints());
+    }
+
+    public void dmgDealt(int dmg, String name){
+        System.out.println( name +" Ha subito : " + dmg +" danni");
+    }
+
+    public void win(String nome, int monete){
+        System.out.println("Hai sconfitto : " + nome);
+        System.out.println("Hai ottenuto : "+ monete + " monete");
+    }
+}

@@ -25,16 +25,13 @@ public class CombatSystem {
             String input;
             do {
                 input = gameView.getUserInput().trim();
-                System.out.println("DEBUG: Input ricevuto -> " + input);
             } while (!isValidInput(input));
 
             String pgAttack = attackChoice(input, pg);
-            System.out.println("DEBUG: Attacco scelto -> " + pgAttack);
 
             int playerRoll = pg.getAgilityRoll();
             int monsterRoll = monster.getAgilityRoll();
             combatView.agilityRoll(playerRoll, monsterRoll);
-            System.out.println("DEBUG: Iniziativa - Giocatore: " + playerRoll + " vs Mostro: " + monsterRoll);
 
             boolean playerFirst = playerRoll >= monsterRoll;
             
@@ -49,19 +46,21 @@ public class CombatSystem {
                     playerTurn(pg, monster, pgAttack);
                 }
             }
-            
-            System.out.println("DEBUG: HP Giocatore: " + pg.getCurrentHealtPoints() + " | HP Mostro: " + monster.getCurrentHealtPoints());
+            combatView.endRound(pg, monster);
         }
+        pg.getPosition().setMonster(null);
+        int money = pg.getRandomMoney();
+        pg.addMoney(money);
+        combatView.win(monster.getName(), money);
     }
 
     private void playerTurn(Player pg, Monster monster, String pgAttack) {
         int accuracy = pg.performAttack(pgAttack);
-        System.out.println("DEBUG: Precisione attacco -> " + accuracy);
         
         if (accuracy > 0) {
             int dmg = pg.dmgCounter(pg.getWeapon().getDmgP(), monster.getPhysicalDefense());
-            System.out.println("DEBUG: Danno inflitto -> " + dmg);
             monster.takeDamage(dmg);
+            combatView.dmgDealt(dmg, monster.getName());
         } else {
             combatView.attackMiss(pg.getName());
         }
@@ -70,13 +69,12 @@ public class CombatSystem {
     private void monsterTurn(Player pg, Monster monster) {
         int monsterAttack = monster.selectAttack();
         int accuracy = monster.performAttack(monsterAttack);
-        System.out.println("DEBUG: Precisione attacco mostro -> " + accuracy);
         
         if (accuracy > 0) {
             int attackDmg = monster.dmgAttack(monsterAttack);
             int dmg = monster.dmgCounter(attackDmg, pg.getPhysicalDefense());
-            System.out.println("DEBUG: Danno ricevuto -> " + dmg);
             pg.takeDamage(dmg);
+            combatView.dmgDealt(dmg, pg.getName());
         } else {
             combatView.attackMiss(monster.getName());
         }

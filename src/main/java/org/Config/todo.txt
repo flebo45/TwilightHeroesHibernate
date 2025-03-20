@@ -1,8 +1,9 @@
-1. Gestire la logica della room, ovvero se vi è una trappola o un mostro
+//1. Gestire la logica della room, ovvero se vi è una trappola o un mostro
     - Per la trappola effettuare il roll sulla skill
     - Per il mostro gestire il Combat system
 
-2. Gestire l' Examine della room
+
+//2. Gestire l' Examine della room
     - Controllare quali item ci sono e aggiornare l'inventario del player
 
 //3. Inserire loop per continuare a chiedere le azioni al player

@@ -1,8 +1,7 @@
 package org.Model;
 
-import static org.Model.Personage.random;
 
-import jakarta.enterprise.inject.Model;
+import java.util.Random;
 
 public class Player extends Personage {
     private String username;
@@ -11,6 +10,7 @@ public class Player extends Personage {
     private Inventory inventory;
     private Armor armor;
     private Weapon weapon;
+    Random random = new Random();
 
     public Player(String username, Character character) {
         super(character.getName(), character.getHealthPoints(), character.getStrength(), character.getMagicDefense(), character.getPhysicalDefense(), character.getAgility(), character.getMana(), character.getLuck());
@@ -101,6 +101,33 @@ public class Player extends Personage {
         
         return hitRoll <= attackAccuracy ? attackAccuracy : 0;
     }
+
+
+    public int getRandomMoney(){
+        return random.nextInt(100);
+    }
+
+
+    public int roll(){
+        int roll = random.nextInt(20);
+        return roll;
+        
+    }
+
+    public int getPlayerStat(String trap) {
+        switch (trap.toLowerCase()) {
+            case "agl": return this.getAgility();
+            case "str": return this.getStrength();
+            case "magic_d": return this.getMagicDefense();
+            case "luck" : return this.getLuck();
+            default: return 0; // Se la statistica non è riconosciuta, assume 0
+        }
+    }
+
+    public void addMoney(int newMoney) {
+        this.money = money+newMoney;
+    }
+
 }
 
 

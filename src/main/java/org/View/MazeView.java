@@ -32,6 +32,16 @@ public class MazeView {
             System.out.println();
         }
 
+   
+
+    }
+
+    public void foundItem(String name){
+        System.out.println("\n Hai trovato: " + name + "\n");
+    }
+
+    public void noItem(){
+        System.out.println("Nessun oggetto è stato trovato...\n");
     }
 
 

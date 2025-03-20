@@ -62,5 +62,23 @@ public class MazeFacade {
         this.roomView.displayWall();
     }
 
+    public void examineRoom(Player player){
+        Room room = player.getPosition();
+        if (room.getConsumables() != null){
+            player.getInventory().addConsumables(room.getConsumables());
+            mazeView.foundItem(room.getConsumables().getName());
+        }
+        if(room.getWeapon() != null){
+            player.getInventory().addItem(room.getWeapon());
+            mazeView.foundItem(room.getWeapon().getName());
+        }
+
+        if (room.getWeapon() == null && room.getConsumables() == null){
+            mazeView.noItem();
+        }
+
+
+    }
+
 
 }

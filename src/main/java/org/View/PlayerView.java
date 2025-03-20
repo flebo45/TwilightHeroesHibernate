@@ -2,9 +2,7 @@ package org.View;
 
 
 import org.Model.Player;
-import org.Model.Room;
 
-import java.util.Scanner;
 
 public class PlayerView {
 

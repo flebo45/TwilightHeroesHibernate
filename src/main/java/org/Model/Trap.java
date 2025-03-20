@@ -2,8 +2,6 @@ package org.Model;
 
 import jakarta.persistence.*;
 
-import java.util.Random;
-
 @Entity
 @Table(name= "TRAPS")
 public class Trap {
@@ -114,37 +112,18 @@ public class Trap {
         this.damage = damage;
     }
 
-    public boolean resolveTrap(Player player){
-        System.out.println("hai trovato nel tuo percorso: " + getName() + "!");
-        System.out.println(getDescription());
-        System.out.println(getDescription2());
-        Random random = new Random();
-        int roll = random.nextInt(20) + 1;
-        int playerStat = getPlayerStat(player); // Ottiene la statistica corrispondente
+
+
+    public boolean resolveTrap(int playerStat, int roll){
         int total = roll + playerStat;
-
-        System.out.println("Hai tirato: " + roll + " + " + playerStat + " (" + stat.toUpperCase() + ") = " + total);
-
         if (total >= getValue()) {
-            System.out.println(getSuccess());
             return true;
         } else {
-            System.out.println(getFailure()+ "\nSubisci " + damage + " danni!");
-            player.takeDamage(damage);
             return false;
         }
     }
 
-    private int getPlayerStat(Player player) {
-        switch (stat.toLowerCase()) {
-            case "agl": return player.getAgility();
-            case "str": return player.getStrength();
-            case "magic_d": return player.getMagicDefense();
-            case "luck" : return player.getLuck();
-            default: return 0; // Se la statistica non è riconosciuta, assume 0
-        }
-    }
-
+  
     public void setId(Long id) {
         this.id = id;
     }
