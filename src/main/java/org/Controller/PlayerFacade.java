@@ -108,6 +108,27 @@ public class PlayerFacade {
 
     public void getPlayerInventory(Player player) {
         this.playerView.showPlayerInventory(player);
+        this.playerView.askForaction();
+        String input;
+        do{
+        input  = this.gameView.getUserInput().trim();
+        }
+        while(!isValidInput(input));
+
+        if (input == "1" ){
+                
+        }
+        else if (input == "2"){
+
+        }
+
+        
         //aggiungere modo per equippaggiare ed uare consumabili
     }
+
+
+    private boolean isValidInput(String input) {
+        return input.equals("1") || input.equals("2");
+    }
+
 }
