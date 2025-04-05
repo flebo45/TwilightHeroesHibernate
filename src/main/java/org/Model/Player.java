@@ -128,6 +128,36 @@ public class Player extends Personage {
         this.money = money+newMoney;
     }
 
+
+    public void equipItem(Item item) {
+        if (item instanceof Armor) {
+            if (this.armor != null) {
+                this.armor.setEquipped(false);
+            }
+            this.armor = (Armor) item;
+            this.armor.setEquipped(true);
+        } else if (item instanceof Weapon) {
+            if (this.weapon != null) {
+                this.weapon.setEquipped(false);
+            }
+            this.weapon = (Weapon) item;
+            this.weapon.setEquipped(true);
+        }
+        
+    }
+
+    public void useConsumable(Consumables cons){
+        if(cons instanceof ConsumableSpecial){}
+        else if(cons instanceof ConsumableStatus){
+           this.currentHealtPoints = ((ConsumableStatus) cons).getHeal() + this.currentHealtPoints;
+            if (this.currentHealtPoints > this.healtPoints){this.currentHealtPoints = this.healtPoints;}
+           this.currentMana = ((ConsumableStatus) cons).getmana()  + this.currentMana;
+            if (this.currentMana > this.mana){this.currentMana = this.mana;}
+        }
+        else if (cons instanceof ConsumableTime){}
+    }
+
+
 }
 
 

@@ -58,7 +58,13 @@ public class CombatSystem {
         int accuracy = pg.performAttack(pgAttack);
         
         if (accuracy > 0) {
-            int dmg = pg.dmgCounter(pg.getWeapon().getDmgP(), monster.getPhysicalDefense());
+            int dmg;
+            if (pgAttack.equals("1")){
+                dmg = pg.dmgCounter(pg.getWeapon().getDmgP(), monster.getPhysicalDefense());
+            }
+            else{
+                dmg = pg.dmgCounter(pg.getWeapon().getDmgS(), monster.getPhysicalDefense());
+            }
             monster.takeDamage(dmg);
             combatView.dmgDealt(dmg, monster.getName());
         } else {

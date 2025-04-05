@@ -1,6 +1,7 @@
 package org.View;
 
 
+import org.Model.Consumables;
 import org.Model.Player;
 
 
@@ -74,6 +75,49 @@ public class PlayerView {
     }
 
 
+    public void askForaction(){
+        System.out.println("Vuoi utilizzare un consumabile o equipaggiare un oggetto?");
+        System.out.println("1. consumabile");
+        System.out.println("2. oggetto");
+        System.out.println("3. annulla");
 
+    }
 
+    public void showItem(Player player){
+        System.out.println("Cosa vuoi equipaggiare?");
+    }
+
+    public void showConsumable(Player player){
+        System.out.println(player.getInventory().getConsumables());
+    }
+
+    public void noItem(){
+        System.out.println("Nessun item nell'inventario");
+    }
+
+    public void noConsumables(){
+        System.out.println("Nessun consumabile nell'inventario");
+    }
+
+    public void showItemList(Player player) {
+        System.out.println("Available Items:");
+        for (int i = 0; i < player.getInventory().getItemList().size(); i++) {
+            System.out.println((i + 1) + ". " + player.getInventory().getItemList().get(i).getName());
+        }
+    }
+
+    public void showConsumableList(Player player) {
+        System.out.println("Available Items:");
+        for (int i = 0; i < player.getInventory().getConsumables().size(); i++) {
+            System.out.println((i + 1) + ". " + player.getInventory().getConsumables().get(i).getName());
+        }
+    }
+
+    public void useConsumable(Consumables consumables) {
+       System.out.println("Hai utilizzato: "+consumables.toString());
+    }
+
+    public void newEquipped(String nome){
+        System.out.println("hai equipaggiato: " + nome);
+    }
 }

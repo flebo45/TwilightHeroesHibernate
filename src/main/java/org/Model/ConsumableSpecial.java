@@ -16,6 +16,11 @@ public class ConsumableSpecial extends Consumables {
         this.effectType = effectType;
     }
 
+    public void useConsumable(Player player){
+        
+    }
+
+
     /**@Override
     public void consume(Player player, PlayerController pgController) {
         switch (effectType) {

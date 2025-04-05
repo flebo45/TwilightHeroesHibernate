@@ -36,7 +36,11 @@ public class MazeView {
 
     }
 
-    public void foundItem(String name){
+    public void foundItem(String name, String a){
+        if(a.equals("a")){System.out.println("Armatura:");}
+        if(a.equals("w")){System.out.println("Arma: ");}
+        if(a.equals("c")){System.out.println("Consumabile: ");}
+
         System.out.println("\n Hai trovato: " + name + "\n");
     }
 

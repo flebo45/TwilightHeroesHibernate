@@ -29,7 +29,7 @@ public class MazePopulator {
 
     private void populateWithConsumables(Maze maze) {
         //max number of room to populate (30%)
-        int maxItems = (int) ((maze.getSize() ^ 2) * 0.3);
+        int maxItems = (int) ((maze.getSize() ^ 2) * 0.5);
 
         for (int i = 0; i < maxItems; i++) {
             //Random consumables from the list

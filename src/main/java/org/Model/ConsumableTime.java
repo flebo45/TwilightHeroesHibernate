@@ -37,6 +37,10 @@ public class ConsumableTime extends Consumables {
         
     }
 
+    public void useConsumable(Player player){
+        
+    }
+
     /**@Override
     public void consume(Player player , PlayerController pgController) {
         //player.applyTemporaryEffect(effectType, value, duration);

@@ -6,6 +6,7 @@ import org.Model.Monster;
 import org.Model.Player;
 import org.Model.Trap;
 import org.View.GameView;
+import org.View.MazeView;
 
 public class TwilightHeroesGame {
     private final GameView gameView;
@@ -13,8 +14,10 @@ public class TwilightHeroesGame {
     private final MazeFacade mazeFacade;
     private final CombatSystem CombatSystem;
     private final TrapFacade trapFacade;
+    private final MazeView mazeView;
 
     public TwilightHeroesGame() {
+        this.mazeView = new MazeView();
         this.gameView = new GameView();
         this.playerFacade = new PlayerFacade();
         this.mazeFacade = new MazeFacade();
@@ -82,7 +85,6 @@ public class TwilightHeroesGame {
     public void game(Player player, Maze maze){
         boolean game = true;
         while(game){
-            this.mazeFacade.room(player.getPosition());
             if(player.getPosition().getMonster() != null ){
                 Monster monster = player.getPosition().getMonster();
                 CombatSystem.combat(player, monster);
@@ -102,6 +104,8 @@ public class TwilightHeroesGame {
             if(canMove){
                 running = false;
                 this.mazeFacade.room(player.getPosition());
+                this.mazeView.printMaze(maze, player);
+
             }else{
                 this.mazeFacade.wall();
             }

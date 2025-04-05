@@ -20,6 +20,13 @@ public class ConsumableStatus extends Consumables {
         this.healthRestored = healthRestored;
     }
 
+    public int getHeal(){
+        return this.healthRestored;
+    }
+
+    public int getmana(){
+        return this.manaRestored;
+    }
     /**
     @Override
     public void consume(Player player, PlayerController pgController) {

@@ -42,4 +42,9 @@ public abstract class Consumables {
     public Long getId() {
         return id;
     }
+
+       public void useConsumable(Player player){
+        
+    }
+
 }

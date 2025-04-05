@@ -66,14 +66,19 @@ public class MazeFacade {
         Room room = player.getPosition();
         if (room.getConsumables() != null){
             player.getInventory().addConsumables(room.getConsumables());
-            mazeView.foundItem(room.getConsumables().getName());
+            mazeView.foundItem(room.getConsumables().getName(), "c");
         }
         if(room.getWeapon() != null){
             player.getInventory().addItem(room.getWeapon());
-            mazeView.foundItem(room.getWeapon().getName());
+            mazeView.foundItem(room.getWeapon().getName(), "w");
         }
 
-        if (room.getWeapon() == null && room.getConsumables() == null){
+        if(room.getArmor() != null){
+            player.getInventory().addItem(room.getArmor());
+            mazeView.foundItem(room.getArmor().getName(), "a");
+        }
+
+        if (room.getWeapon() == null && room.getConsumables() == null && room.getArmor() == null){
             mazeView.noItem();
         }
 
