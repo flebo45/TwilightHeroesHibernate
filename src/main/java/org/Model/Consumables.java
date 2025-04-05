@@ -42,4 +42,8 @@ public abstract class Consumables {
     public Long getId() {
         return id;
     }
+
+    public void consume(){
+
+    }
 }

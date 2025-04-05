@@ -4,8 +4,6 @@ import org.Model.Player;
 import org.Model.Shop;
 import org.View.ShopView;
 
-import java.util.Dictionary;
-import java.util.Map;
 
 public class ShopFacade {
     private final ShopView shopView;
