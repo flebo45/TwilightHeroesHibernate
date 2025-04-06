@@ -128,23 +128,6 @@ public class Player extends Personage {
         this.money = money+newMoney;
     }
 
-    public void equipItem(Item item) {
-        if (item instanceof Armor) {
-            if (this.armor != null) {
-                this.armor.setEquipped(false);
-            }
-            this.armor = (Armor) item;
-            this.armor.setEquipped(true);
-        } else if (item instanceof Weapon) {
-            if (this.weapon != null) {
-                this.weapon.setEquipped(false);
-            }
-            this.weapon = (Weapon) item;
-            this.weapon.setEquipped(true);
-        }
-        
-    }
-
 }
 
 

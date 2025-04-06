@@ -109,60 +109,26 @@ public class PlayerFacade {
     public void getPlayerInventory(Player player) {
         this.playerView.showPlayerInventory(player);
         this.playerView.askForaction();
-        
         String input;
-        do {
-            input = this.gameView.getUserInput().trim();
-        } while (!isValidInput(input));
-    
-        if ("1".equals(input)) {
-            showAndEquipItem(player);
-        } else if ("2".equals(input)) {
-            showAndUseConsumable(player);
+        do{
+        input  = this.gameView.getUserInput().trim();
         }
+        while(!isValidInput(input));
+
+        if (input == "1" ){
+                
+        }
+        else if (input == "2"){
+
+        }
+
+        
+        //aggiungere modo per equippaggiare ed uare consumabili
     }
+
 
     private boolean isValidInput(String input) {
-        return "1".equals(input) || "2".equals(input);
+        return input.equals("1") || input.equals("2");
     }
-    
-    private void showAndEquipItem(Player player) {
-        if (player.getInventory().getItemList().isEmpty()) {
-            this.playerView.noItem();
-            return;
-        }
-        this.playerView.showItemList(player);
-        int choice = getValidChoice(player.getInventory().getItemList().size());
-        player.equipItem(player.getInventory().getItemList().get(choice - 1));
-
-        //this.playerView.showMessage("Equipped: " + items.get(choice - 1).getName());
-    }
-    
-    private void showAndUseConsumable(Player player) {
-        if (player.getInventory().getConsumables().isEmpty()) {
-            this.playerView.noConsumables();
-            return;
-        }
-        
-        this.playerView.showConsumableList(player);
-        int choice = getValidChoice(player.getInventory().getConsumables().size());
-        player.getInventory().getConsumables().get(choice - 1).useConsumable();
-       this.playerView.useConsumable(player.getInventory().getConsumables().get(choice));
-    }
-    
-    private int getValidChoice(int maxOption) {
-        int choice;
-        do {
-            try {
-                choice = Integer.parseInt(this.gameView.getUserInput().trim());
-            } catch (NumberFormatException e) {
-                choice = -1;
-            }
-        } while (choice < 1 || choice > maxOption);
-        
-        return choice;
-    }
-    
-    
 
 }
