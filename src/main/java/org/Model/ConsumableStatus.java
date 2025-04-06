@@ -32,7 +32,7 @@ public class ConsumableStatus extends Consumables {
     public void consume(Player player, PlayerController pgController) {
         pgController.pgHeal(healthRestored, manaRestored, player);
         if(healthRestored == 0){
-        System.out.println("Hai consumato " + name + ". Mana ripristinata di " + manaRestored + " punti.");
+        System.out.println("Hai consumato " + name + ". Mana riprist  inata di " + manaRestored + " punti.");
         }
         if(manaRestored == 0){
             System.out.println("Hai consumato " + name + ". Hp ripristinata di " + healthRestored+ " punti.");

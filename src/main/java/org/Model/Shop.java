@@ -50,16 +50,7 @@ public class Shop extends Room {
 
     /**
     public void enterShop(Player player, Scanner scanner, Master master) {
-        System.out.println("Sei entrato nel negozio!");
         
-        
-
-      
-        
-        
-
-        int money = player.getMoney();
-        System.out.println("Hai " + money + " monete d'oro. Cosa vuoi comprare?");
        
     
         // Ciclo che continua a chiedere finché l'utente non fa una scelta valida per l'acquisto

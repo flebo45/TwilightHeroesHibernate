@@ -148,7 +148,8 @@ public class PlayerFacade {
         this.playerView.showConsumableList(player);
         int choice = getValidChoice(player.getInventory().getConsumables().size());
         player.getInventory().getConsumables().get(choice - 1).useConsumable(player);
-       this.playerView.useConsumable(player.getInventory().getConsumables().get(choice));
+       this.playerView.useConsumable(player.getInventory().getConsumables().get(choice-1));
+       player.getInventory().getConsumables().remove(choice -1);
     }
     
     private int getValidChoice(int maxOption) {

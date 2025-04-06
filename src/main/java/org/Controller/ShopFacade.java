@@ -1,16 +1,20 @@
 package org.Controller;
 
 import org.Model.Player;
+import org.Model.Room;
 import org.Model.Shop;
+import org.View.GameView;
 import org.View.ShopView;
 
 import java.util.Dictionary;
 import java.util.Map;
 
 public class ShopFacade {
+    private  final GameView gameView;
     private final ShopView shopView;
 
     public ShopFacade() {
+        this.gameView = new GameView();
         this.shopView = new ShopView();
     }
 
@@ -67,4 +71,20 @@ public class ShopFacade {
             return false;
         }
     }
-}
+
+    public void enterShop(Player pg, Shop shop) {
+        this.shopView.enterShop(pg.getMoney());
+        String choice = this.gameView.getUserInput();
+        if (choice.equals("1")){
+            this.shopView.printWeap(shop);
+        }
+        else if(choice.equals("2")){
+            this.shopView.printArm(shop);
+        }
+        else if(choice.equals("3")){
+            this.shopView.printCons(shop);
+        }
+        else{
+        }
+        }
+    }

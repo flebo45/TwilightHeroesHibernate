@@ -12,15 +12,15 @@
     - Aggiornare inventario player
     - Rimuovere gli oggetti già acquistati
 
-5. Gestire l'uso dei consumabili
+//5. Gestire l'uso dei consumabili
     - Rimuoverli dall'inventario
     - Aggiornare le statistiche del player
 
-6. Gestire l'equip delle armature e della weapon(per ora semplice poiché il player può evere solo un pezzo di armatura)
+//6. Gestire l'equip delle armature e della weapon(per ora semplice poiché il player può evere solo un pezzo di armatura)
     - Rimuovere il corrente pezzo equipaggiato
     - Inserire quello nuovo
 
-7. Gestire la visualizzazione dell'inventario con annessi comandi per mettere e togliere armatura e usare consumabili
+//7. Gestire la visualizzazione dell'inventario con annessi comandi per mettere e togliere armatura e usare consumabili
 
 8. Inserire la winning condition
     - Una volta arrivati all'ultima room finire la partita

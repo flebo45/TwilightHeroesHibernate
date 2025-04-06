@@ -4,11 +4,13 @@ import org.Model.GameDifficulty;
 import org.Model.Maze;
 import org.Model.Monster;
 import org.Model.Player;
+import org.Model.Shop;
 import org.Model.Trap;
 import org.View.GameView;
 import org.View.MazeView;
 
 public class TwilightHeroesGame {
+    private final ShopFacade shopFacade;
     private final GameView gameView;
     private final PlayerFacade playerFacade;
     private final MazeFacade mazeFacade;
@@ -17,6 +19,7 @@ public class TwilightHeroesGame {
     private final MazeView mazeView;
 
     public TwilightHeroesGame() {
+        this.shopFacade = new ShopFacade();
         this.mazeView = new MazeView();
         this.gameView = new GameView();
         this.playerFacade = new PlayerFacade();
@@ -93,8 +96,17 @@ public class TwilightHeroesGame {
                 Trap trap = player.getPosition().getTrap();
                 trapFacade.triggerTrap(player, trap);
             }
+            else if(player.getPosition() instanceof Shop){
+                shopFacade.enterShop(player, (Shop) player.getPosition());
+            }
+            winCondition();
             this.runPlayerAction(player, maze);
         }
+    }
+
+    private void winCondition() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'winCondition'");
     }
 
     public void movePlayer(Player player, Maze maze) {

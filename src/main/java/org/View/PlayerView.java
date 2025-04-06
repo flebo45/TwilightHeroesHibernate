@@ -100,14 +100,14 @@ public class PlayerView {
     }
 
     public void showItemList(Player player) {
-        System.out.println("Available Items:");
+        System.out.println("Oggetti disponibili: ");
         for (int i = 0; i < player.getInventory().getItemList().size(); i++) {
             System.out.println((i + 1) + ". " + player.getInventory().getItemList().get(i).getName());
         }
     }
 
     public void showConsumableList(Player player) {
-        System.out.println("Available Items:");
+        System.out.println("Consumabili disponibili: ");
         for (int i = 0; i < player.getInventory().getConsumables().size(); i++) {
             System.out.println((i + 1) + ". " + player.getInventory().getConsumables().get(i).getName());
         }
