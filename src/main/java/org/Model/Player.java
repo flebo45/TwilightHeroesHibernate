@@ -89,11 +89,11 @@ public class Player extends Personage {
         return baseAttribute + this.armor.getBonus(attribute);
 
     }
-    public int performAttack(String attack) {
+    public int performAttack(int attack) {
         int hitRoll = random.nextInt(100) + 1;
         int attackAccuracy;
         
-        if (attack.equals(this.getWeapon().getAttackP())) {
+        if (attack ==  1) {
             attackAccuracy = this.getWeapon().getPrimaryAccuracy();
         } else {
             attackAccuracy = this.getWeapon().getSecondaryAccuracy();

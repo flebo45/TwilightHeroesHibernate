@@ -1,6 +1,12 @@
 package org.View;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.Model.Armor;
+import org.Model.Consumables;
 import org.Model.Shop;
+import org.Model.Weapon;
 
 public class ShopView {
 
@@ -18,10 +24,12 @@ public class ShopView {
         System.out.println("L'oggetto che hai selezionato non esiste o lo hai già acquistato.");
     }
 
-    public void enterShop(int money){
+    public void firstEnter(){
         System.out.println("Sei entrato nel negozio!");
-        System.out.println("Hai " + money + " monete d'oro. Cosa vuoi comprare?");
+    }
 
+    public void enterShop(int money){
+        System.out.println("Hai " + money + " monete d'oro. Cosa vuoi comprare?");
         System.out.println("Scegli una categoria di acquisto:");
         System.out.println("1. Armi");
         System.out.println("2. Armature");
@@ -30,25 +38,42 @@ public class ShopView {
     }
 
     public void printCons(Shop shop){
-                System.out.println("Benvenuto nello shop, questi sono gli oggetti che puoi acquistare: ");
+        System.out.println("Benvenuto nello shop, questi sono gli oggetti che puoi acquistare: ");
         System.out.println("Consumabili: ");
-        for(int i = 0; i< shop.getConsumableList().size(); i++){
-            System.out.println((i+1) + shop.getConsumableList().get(i).toString());
+        int i = 1;
+        for(Entry<Integer, Consumables> entry : shop.getConsumableList().entrySet()){
+            Integer price  = entry.getKey();
+            Consumables consumables = entry.getValue();
+            System.out.println(i + ". Prezzo: " + price + " - Nome: " + consumables.getName());
+            i++;
         }
     }
 
         public void printArm(Shop shop){
-        System.out.print("\nArmatura: ");
-        for(int i = 0; i< shop.getArmorList().size(); i++){
-            System.out.println((i+1) + shop.getArmorList().get(i).toString());
+        System.out.print("\nArmature: ");
+        int i = 1;
+        for(Entry<Integer, Armor> entry : shop.getArmorList().entrySet()){
+            Integer price  = entry.getKey();
+            Armor armor = entry.getValue();
+            System.out.println(i+". Prezzo: " + price + " - Nome: " + armor.getName());
+            i++;
         }
     }
 
-        public void printWeap(Shop shop){
-        System.out.println("\nArma: ");
-        for(int i = 0; i< shop.getWeaponList().size(); i++){
-            System.out.println((i+1) + shop.getWeaponList().get(i).toString());
-        }
+    public void printWeap(Shop shop){
+    System.out.println("\nArmi: ");
+    int i = 1;
+    for(Entry<Integer, Weapon> entry : shop.getWeaponList().entrySet()){
+        Integer price  = entry.getKey();
+        Weapon weapon = entry.getValue();
+        System.out.println(i+". Prezzo: " + price + " - Nome: " + weapon.getName());
+        i++;
+    }
+    }
+    
+
+    public void printChoice(){
+        System.out.println("Inserisci il numero dell'oggetto che vuoi comprare o inserisci '11' per tornare al menu principale!");
     }
 
 }

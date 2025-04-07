@@ -22,12 +22,9 @@ public class CombatSystem {
         while (pg.getCurrentHealtPoints() > 0 && monster.getCurrentHealtPoints() > 0) {
             combatView.baseTurn(pg, monster);
             
-            String input;
-            do {
-                input = gameView.getUserInput().trim();
-            } while (!isValidInput(input));
+            int input;
+            input = gameView.getUserInputInt();
 
-            String pgAttack = attackChoice(input, pg);
 
             int playerRoll = pg.getAgilityRoll();
             int monsterRoll = monster.getAgilityRoll();
@@ -36,14 +33,14 @@ public class CombatSystem {
             boolean playerFirst = playerRoll >= monsterRoll;
             
             if (playerFirst) {
-                playerTurn(pg, monster, pgAttack);
+                playerTurn(pg, monster, input);
                 if (monster.getCurrentHealtPoints() > 0) {
                     monsterTurn(pg, monster);
                 }
             } else {
                 monsterTurn(pg, monster);
                 if (pg.getCurrentHealtPoints() > 0) {
-                    playerTurn(pg, monster, pgAttack);
+                    playerTurn(pg, monster,input);
                 }
             }
             combatView.endRound(pg, monster);
@@ -54,15 +51,19 @@ public class CombatSystem {
         combatView.win(monster.getName(), money);
     }
 
-    private void playerTurn(Player pg, Monster monster, String pgAttack) {
-        int accuracy = pg.performAttack(pgAttack);
+    private void playerTurn(Player pg, Monster monster, int input) {
+        int accuracy = pg.performAttack(input);
         
         if (accuracy > 0) {
+            
+            
             int dmg;
-            if (pgAttack.equals("1")){
+            if (input == 1){
+                System.out.println(pg.getWeapon().getDmgP());
                 dmg = pg.dmgCounter(pg.getWeapon().getDmgP(), monster.getPhysicalDefense());
             }
             else{
+                System.out.println(pg.getWeapon().getDmgS());
                 dmg = pg.dmgCounter(pg.getWeapon().getDmgS(), monster.getPhysicalDefense());
             }
             monster.takeDamage(dmg);
@@ -85,20 +86,6 @@ public class CombatSystem {
             combatView.attackMiss(monster.getName());
         }
     }
-
-    private boolean isValidInput(String input) {
-        return input.equals("1") || input.equals("2");
-    }
-
-    public String attackChoice(String input, Player pg) {
-        return switch (input) {
-            case "1" -> pg.getWeapon().getAttackP();
-            case "2" -> pg.getWeapon().getAttackS();
-            default -> "Error";
-        };
-    }
-
-    
 }
 
 /**

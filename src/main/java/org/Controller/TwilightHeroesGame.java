@@ -8,6 +8,7 @@ import org.Model.Shop;
 import org.Model.Trap;
 import org.View.GameView;
 import org.View.MazeView;
+import org.View.ShopView;
 
 public class TwilightHeroesGame {
     private final ShopFacade shopFacade;
@@ -17,8 +18,10 @@ public class TwilightHeroesGame {
     private final CombatSystem CombatSystem;
     private final TrapFacade trapFacade;
     private final MazeView mazeView;
+    private final ShopView shopView;
 
     public TwilightHeroesGame() {
+        this.shopView = new ShopView();
         this.shopFacade = new ShopFacade();
         this.mazeView = new MazeView();
         this.gameView = new GameView();
@@ -97,16 +100,30 @@ public class TwilightHeroesGame {
                 trapFacade.triggerTrap(player, trap);
             }
             else if(player.getPosition() instanceof Shop){
+                this.shopView.firstEnter();
                 shopFacade.enterShop(player, (Shop) player.getPosition());
             }
-            winCondition();
+            Boolean win =winCondition(player, maze);
+            if (win){
+                endGame(player);
+                break;
+            }
             this.runPlayerAction(player, maze);
         }
     }
 
-    private void winCondition() {
+    private void endGame(Player player){
+        this.gameView.endGame(player);
+    }
+
+    private Boolean winCondition(Player player, Maze maze) {
+        if(player.getPosition().getPositionX() == maze.getSize()-2 && player.getPosition().getPositionY() == maze.getSize()-2){
+            return true;
+        }
+        return false;
+        //check sulla posizione del giocatore e controllare se si trova su size-2, size-1, se si == win
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'winCondition'");
+        
     }
 
     public void movePlayer(Player player, Maze maze) {

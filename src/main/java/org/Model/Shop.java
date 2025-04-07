@@ -15,9 +15,9 @@ public class Shop extends Room {
         this.weaponList = new HashMap<>();
         this.consumablesList = new HashMap<>();
         for(int i = 0; i < maxItem; i++) {
-            this.armorList.put(i * 5, armors.get(i));
-            this.weaponList.put(i * 5, weapons.get(i));
-            this.consumablesList.put(i * 5, consumables.get(i));
+            this.armorList.put((i+1) * 5, armors.get(i));
+            this.weaponList.put((i+1) * 5, weapons.get(i));
+            this.consumablesList.put((i+1) * 5, consumables.get(i));
         }
 
     }

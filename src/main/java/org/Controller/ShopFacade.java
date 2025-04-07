@@ -73,18 +73,39 @@ public class ShopFacade {
     }
 
     public void enterShop(Player pg, Shop shop) {
+        while(true){
         this.shopView.enterShop(pg.getMoney());
-        String choice = this.gameView.getUserInput();
-        if (choice.equals("1")){
+        int choice = this.gameView.getUserInputInt();
+        if (choice == 1){
             this.shopView.printWeap(shop);
+            this.shopView.printChoice();
+            choice = this.gameView.getUserInputInt();
+            if(choice == 11){
+                break;
+            }
+            buyWeapon(pg, shop, choice);
         }
-        else if(choice.equals("2")){
+        else if(choice == 2){
             this.shopView.printArm(shop);
+            this.shopView.printChoice();
+            choice = this.gameView.getUserInputInt();
+            if(choice == 11){
+                break;
+            }
+            buyArmor(pg, shop, choice);
         }
-        else if(choice.equals("3")){
+        else if(choice == 3){
             this.shopView.printCons(shop);
+            this.shopView.printChoice();
+            choice = this.gameView.getUserInputInt();
+            if(choice == 11){
+                break;
+            }
+            buyConsumables(pg, shop, choice);
         }
-        else{
+        else if(choice == 4){
+            break;
         }
         }
+    }
     }

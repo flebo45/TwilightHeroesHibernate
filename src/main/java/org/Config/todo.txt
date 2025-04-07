@@ -22,6 +22,6 @@
 
 //7. Gestire la visualizzazione dell'inventario con annessi comandi per mettere e togliere armatura e usare consumabili
 
-8. Inserire la winning condition
+//8. Inserire la winning condition
     - Una volta arrivati all'ultima room finire la partita
 

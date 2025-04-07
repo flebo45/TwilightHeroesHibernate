@@ -14,6 +14,13 @@ public class ShopCreator {
         this.consumablesList = consumablesList;
         this.armorList = armorList;
         this.weaponList = weaponList;
+        for(int i = 0; i < consumablesList.size(); i++);{
+            int j = 0;
+            System.out.println(armorList.get(j));
+            j++;
+        }
+        System.out.println(armorList.size());
+        System.out.println(weaponList.size());
     }
 
 

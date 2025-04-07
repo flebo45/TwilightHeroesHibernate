@@ -116,9 +116,9 @@ public class PlayerFacade {
             input = this.gameView.getUserInput().trim();
         } while (!isValidInput(input));
     
-        if ("1".equals(input)) {
+        if ("2".equals(input)) {
             showAndEquipItem(player);
-        } else if ("2".equals(input)) {
+        } else if ("1".equals(input)) {
             showAndUseConsumable(player);
         }
         else if( "3".equals(input)){}

@@ -2,6 +2,8 @@ package org.View;
 
 import java.util.Scanner;
 
+import org.Model.Player;
+
 public class GameView {
 
     private final Scanner scanner;
@@ -34,6 +36,11 @@ public class GameView {
         return scanner.nextLine();
     }
 
+    public int getUserInputInt(){
+        return scanner.nextInt();
+    }
+
+
 
     public void exitGame(){
         System.out.println("Grazie per aver giocato");
@@ -45,6 +52,11 @@ public class GameView {
 
     public void loadGame() {
         System.out.println("Funzione non ancora implementata.");
+    }
+
+    public void endGame(Player player){
+        System.out.println("Complimenti "+ player.getName() + " per la tua incredibile impresa.\n Hai completato il gioco di TwilightHeroes\n\n");
+        System.out.println("Realizzato da Vortex studio per il progetto di software Eng.");
     }
 
 }
