@@ -22,7 +22,6 @@ public class HibernateService {
                 .addAnnotatedClass(Item.class)
                 .addAnnotatedClass(Weapon.class)
                 .addAnnotatedClass(Consumables.class)
-                .addAnnotatedClass(ConsumableTime.class)
                 .addAnnotatedClass(ConsumableStatus.class)
                 .addAnnotatedClass(ConsumableSpecial.class)
                 .buildSessionFactory();

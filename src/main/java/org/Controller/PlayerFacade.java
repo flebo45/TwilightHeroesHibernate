@@ -107,7 +107,7 @@ public class PlayerFacade {
     }
 
   
-    public void getPlayerInventory(Player player) {
+    public void getPlayerInventory(Player player, Maze maze) {
         this.playerView.showPlayerInventory(player);
         this.playerView.askForaction();
         
@@ -119,7 +119,7 @@ public class PlayerFacade {
         if ("2".equals(input)) {
             showAndEquipItem(player);
         } else if ("1".equals(input)) {
-            showAndUseConsumable(player);
+            showAndUseConsumable(player, maze);
         }
         else if( "3".equals(input)){}
     }
@@ -140,16 +140,16 @@ public class PlayerFacade {
         this.playerView.newEquipped(player.getInventory().getItemList().get(choice - 1).getName());
     }
     
-    private void showAndUseConsumable(Player player) {
+    private void showAndUseConsumable(Player player, Maze maze) {
         if (player.getInventory().getConsumables().isEmpty()) {
             this.playerView.noConsumables();
             return;
         }
         this.playerView.showConsumableList(player);
         int choice = getValidChoice(player.getInventory().getConsumables().size());
-        player.getInventory().getConsumables().get(choice - 1).useConsumable(player);
-       this.playerView.useConsumable(player.getInventory().getConsumables().get(choice-1));
-       player.getInventory().getConsumables().remove(choice -1);
+        //System.out.println("Scelta:" + choice);
+        player.getInventory().getConsumables().get(choice - 1).useConsumable(player, maze);
+        this.playerView.useConsumable(player.getInventory().getConsumables().get(choice-1));
     }
     
     private int getValidChoice(int maxOption) {

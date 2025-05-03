@@ -17,8 +17,17 @@ public class test {
         //MazeFacade.mazeCreation(15, 3);
 
 
-        Character character = PersistentManager.getInstance().loadCharacter("Guerriero");
-        System.out.println(character.getArmor());
+        /**
+         * Character character = PersistentManager.getInstance().loadCharacter("Guerriero");
+         *         System.out.println(character.getArmor());
+         */
+        List<Consumables> cList = PersistentManager.getInstance().loadConsumables();
+        for(Consumables c : cList) {
+            System.out.println(c);
+            System.out.println();
+        }
+
+
         /**
          * MazeCreator creator = new MazeCreator(15);
          *

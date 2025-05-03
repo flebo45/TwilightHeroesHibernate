@@ -43,8 +43,10 @@ public abstract class Consumables {
         return id;
     }
 
-       public void useConsumable(Player player){
-        
+    public void useConsumable(Player player, Maze maze) {
+        EffectStrategy strategy = StrategyFactory.getStrategyFor(this);
+        strategy.apply(this, player, maze);
+        player.getInventory().removeConsumable(this);
     }
 
 }

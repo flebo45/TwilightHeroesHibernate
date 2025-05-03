@@ -154,7 +154,7 @@ public class TwilightHeroesGame {
                 break;
             }
             case "Inventory": {
-                this.playerFacade.getPlayerInventory(player);
+                this.playerFacade.getPlayerInventory(player, maze);
                 break;
             }
             case "Status": {
