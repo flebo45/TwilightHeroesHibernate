@@ -55,8 +55,16 @@ public class GameView {
     }
 
     public void endGame(Player player){
+         System.out.println("===========================================================================");
         System.out.println("Complimenti "+ player.getName() + " per la tua incredibile impresa.\n Hai completato il gioco di TwilightHeroes\n\n");
         System.out.println("Realizzato da Vortex studio per il progetto di software Eng.");
+         System.out.println("==========================================================================");
+    }
+
+      public void pgDead(){
+        System.out.println("===============================================");
+        System.out.println("I tuoi hp Hanno raggiunto lo 0, ha perso!!");
+        System.out.println("===============================================");
     }
 
 }

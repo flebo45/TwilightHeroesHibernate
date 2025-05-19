@@ -94,16 +94,24 @@ public class TwilightHeroesGame {
             if(player.getPosition().getMonster() != null ){
                 Monster monster = player.getPosition().getMonster();
                 CombatSystem.combat(player, monster);
+                if(player.getCurrentHealtPoints() == 0){
+                    this.gameView.pgDead();
+                    break;
+                }
             }
             else if(player.getPosition().getTrap() != null){
                 Trap trap = player.getPosition().getTrap();
                 trapFacade.triggerTrap(player, trap);
+                 if(player.getCurrentHealtPoints() == 0){
+                    this.gameView.pgDead();
+                    break;
+                }
             }
             else if(player.getPosition() instanceof Shop){
                 this.shopView.firstEnter();
                 shopFacade.enterShop(player, (Shop) player.getPosition());
             }
-            Boolean win =winCondition(player, maze);
+            Boolean win = winCondition(player, maze);
             if (win){
                 endGame(player);
                 break;
@@ -121,8 +129,6 @@ public class TwilightHeroesGame {
             return true;
         }
         return false;
-        //check sulla posizione del giocatore e controllare se si trova su size-2, size-1, se si == win
-        // TODO Auto-generated method stub
         
     }
 
@@ -162,6 +168,7 @@ public class TwilightHeroesGame {
                 break;
             }
             case "Exit": {
+                this.initializeGame();
                 break;
             }
         }

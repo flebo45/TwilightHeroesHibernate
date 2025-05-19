@@ -156,7 +156,7 @@ public class MazePopulator {
             int y = roomCoords[1];
 
             Room room = maze.getRoom(x, y);
-            if(room != null && room.getTrap() == null) {
+            if(room != null && room.getTrap() == null && room.getMonster() == null) {
                 room.setTrap(this.trapsList.get(trapIndex));
                 trapIndex++;
             }

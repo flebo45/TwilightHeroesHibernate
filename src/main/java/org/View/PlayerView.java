@@ -1,6 +1,5 @@
 package org.View;
 
-
 import org.Model.Consumables;
 import org.Model.Player;
 
@@ -120,4 +119,5 @@ public class PlayerView {
     public void newEquipped(String nome){
         System.out.println("hai equipaggiato: " + nome);
     }
+
 }
